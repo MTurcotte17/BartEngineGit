@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\SDL20">
+      <UniqueIdentifier>{9302a8de-5aa0-4650-8f28-bdeaade5920a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\SDL20">
+      <UniqueIdentifier>{f1dff8c8-a78e-4d66-b93e-5b90c9de21a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Services">
+      <UniqueIdentifier>{0f9a1aad-2111-4fb8-8941-a8389c86ed32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shapes">
+      <UniqueIdentifier>{445315b3-65ca-4c66-8912-1fd51357800d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Shapes">
+      <UniqueIdentifier>{621dc073-531d-49bf-9d65-7e69d73c456a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Logger">
+      <UniqueIdentifier>{6b7214c6-2d80-4f19-ad81-1e6679b8b76f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Logger">
+      <UniqueIdentifier>{3fa0b36a-04d2-42a4-9f8a-78f2c28ca764}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes">
+      <UniqueIdentifier>{a14493bc-8407-419b-9f31-03d75eab15b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes">
+      <UniqueIdentifier>{ac790e1e-aece-46c0-ad9a-c825f5635ae1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{5b382722-6223-46b9-a4cc-08788c0f8f04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{266ffda4-9b6b-48b1-a39d-2031c540c80b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Null">
+      <UniqueIdentifier>{d45d00ce-c2aa-433c-857b-7316b363528c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Null">
+      <UniqueIdentifier>{7b732200-8301-45e2-88e0-ce6ff1d1b513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SDL20">
+      <UniqueIdentifier>{825e8242-8321-4ff1-a363-3b8485c2cc5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{c367e51b-9622-4faf-a894-b7a205b7ea28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{098037bb-275b-4363-92aa-97f1eb9ac730}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Tiled">
+      <UniqueIdentifier>{21b98b31-d449-489f-886b-bebc9b647463}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Tiled">
+      <UniqueIdentifier>{dd982320-4592-45c7-a357-54d34b600429}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="includes\SdlGraphics.h">
+      <Filter>Header Files\SDL20</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\IGraphic.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\IService.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\IAudio.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\IInput.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ILogger.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\IScene.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ITimer.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SdlAudio.h">
+      <Filter>Header Files\SDL20</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SdlInput.h">
+      <Filter>Header Files\SDL20</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Circle.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Rectangle.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Point.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\VsLogger.h">
+      <Filter>Header Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\StdLogger.h">
+      <Filter>Header Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\FileLogger.h">
+      <Filter>Header Files\Logger</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SdlTimer.h">
+      <Filter>Header Files\SDL20</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Entity.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\GameState.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\World.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\SceneManager.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\HashKey.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EKeys.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullAudio.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullGraphic.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullInput.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullLogger.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullScene.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullTimer.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\GraphicComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Component.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Transformable.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Transform.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Sprite.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Atlas.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Animation.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ICollision.h">
+      <Filter>Header Files\Services</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\BaseCollision.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\NullCollision.h">
+      <Filter>Header Files\Null</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\RectCollider.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\CircleCollider.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\MathHelper.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Sound.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Music.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Text.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Background.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EMouseButton.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\EControllerButtons.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Camera.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TileLayer.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TileMap.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Tileset.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\StringHelper.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\TiledProperty.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Color.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ImageLayer.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Layer.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ObjectLayer.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ObjectFactory.h">
+      <Filter>Header Files\Tiled</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="sources\SdlGraphics.cpp">
+      <Filter>Source Files\SDL20</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SdlAudio.cpp">
+      <Filter>Source Files\SDL20</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Circle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Point.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Rectangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\FileLogger.cpp">
+      <Filter>Source Files\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\StdLogger.cpp">
+      <Filter>Source Files\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\VsLogger.cpp">
+      <Filter>Source Files\Logger</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SdlTimer.cpp">
+      <Filter>Source Files\SDL20</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\World.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SceneManager.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\HashKey.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Entity.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullAudio.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullGraphic.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullInput.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullLogger.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullScene.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullTimer.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Transform.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Sprite.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Animation.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Atlas.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\BaseCollision.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\NullCollision.cpp">
+      <Filter>Source Files\Null</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\CircleCollider.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\RectCollider.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Music.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Sound.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Text.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Background.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Camera.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\TileMap.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\TileLayer.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Tileset.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Color.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\TileProperty.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ImageLayer.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Layer.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ObjectLayer.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\ObjectFactory.cpp">
+      <Filter>Source Files\Tiled</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\SdlInput.cpp">
+      <Filter>Source Files\SDL20</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\externals\libs\x86\libFLAC-8.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libfreetype-6.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libjpeg-9.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libmodplug-1.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libmpg123-0.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libogg-0.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libopus-0.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libopusfile-0.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libpng16-16.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libtiff-5.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libvorbis-0.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libvorbisfile-3.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\libwebp-7.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\SDL2.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_image.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_mixer.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_ttf.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+    <CopyFileToFolders Include="..\externals\libs\x86\zlib1.dll">
+      <Filter>SDL20</Filter>
+    </CopyFileToFolders>
+  </ItemGroup>
+</Project>

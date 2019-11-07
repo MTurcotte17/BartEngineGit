@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="2019.06.20" orientation="orthogonal" renderorder="left-up" width="25" height="15" tilewidth="32" tileheight="32" infinite="0" backgroundcolor="#ff5500" nextlayerid="7" nextobjectid="17">
+ <tileset firstgid="1" source="env.tsx"/>
+ <layer id="6" name="Background" width="25" height="15" visible="0">
+  <properties>
+   <property name="test" type="float" value="3"/>
+  </properties>
+  <data encoding="csv">
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
+2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2
+</data>
+ </layer>
+ <layer id="5" name="Foreground" width="25" height="15" visible="0">
+  <data encoding="csv">
+89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,117,119,115,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,118,120,116,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,
+89,89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,89,
+89,89,89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,89,89,
+89,89,89,89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,89,89,89,89,
+89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89,89
+</data>
+ </layer>
+ <imagelayer id="3" name="GameTitle" visible="0" opacity="0.41" offsetx="32" offsety="160">
+  <image source="Title.png" width="800" height="150"/>
+  <properties>
+   <property name="test" value="Allo"/>
+  </properties>
+ </imagelayer>
+ <objectgroup color="#00ff00" id="4" name="Objects">
+  <properties>
+   <property name="test" type="float" value="44"/>
+  </properties>
+  <object id="12" name="MyRect" type="Rect" x="32" y="64" width="192" height="96">
+   <properties>
+    <property name="color" type="color" value="#ff1688aa"/>
+   </properties>
+  </object>
+  <object id="13" name="asdf5" type="Rect" x="384" y="320" width="384" height="128">
+   <properties>
+    <property name="color" type="color" value="#ffaa55ff"/>
+   </properties>
+  </object>
+  <object id="14" name="asdf1" type="Rect" x="416" y="160" width="32" height="160">
+   <properties>
+    <property name="color" type="color" value="#ffffff00"/>
+   </properties>
+  </object>
+  <object id="15" name="asdf2" type="Rect" x="576" y="160" width="32" height="160">
+   <properties>
+    <property name="color" type="color" value="#ffff00ff"/>
+   </properties>
+  </object>
+  <object id="16" name="asdf3" type="Rect" x="704" y="160" width="32" height="160">
+   <properties>
+    <property name="color" type="color" value="#ffffffff"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,49 @@
+﻿  Animation.cpp
+  Atlas.cpp
+  Background.cpp
+  BaseCollision.cpp
+  Camera.cpp
+  Circle.cpp
+  CircleCollider.cpp
+  Color.cpp
+  Engine.cpp
+  Entity.cpp
+  HashKey.cpp
+  Layer.cpp
+  Music.cpp
+  NullAudio.cpp
+  NullCollision.cpp
+  NullGraphic.cpp
+  NullInput.cpp
+  NullLogger.cpp
+  NullScene.cpp
+  NullTimer.cpp
+  Generating Code...
+  Compiling...
+  ImageLayer.cpp
+  ObjectFactory.cpp
+  ObjectLayer.cpp
+  Point.cpp
+  Rectangle.cpp
+  RectCollider.cpp
+  SceneManager.cpp
+  SdlAudio.cpp
+  SdlGraphics.cpp
+  FileLogger.cpp
+  SdlInput.cpp
+  SdlTimer.cpp
+  Sound.cpp
+  Sprite.cpp
+  StdLogger.cpp
+  Text.cpp
+  TileLayer.cpp
+  TileMap.cpp
+  TileProperty.cpp
+  Tileset.cpp
+  Generating Code...
+  Compiling...
+  Transform.cpp
+  VsLogger.cpp
+  World.cpp
+  Generating Code...
+  bartengine.vcxproj -> D:\BartEngine_1.0.0\Debug\bartengine.lib
