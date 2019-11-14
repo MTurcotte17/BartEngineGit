@@ -1,10 +1,10 @@
 #include <SdlGraphics.h>
-#include <HashKey.h>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <Engine.h>
 #include <Camera.h>
+#include <iostream>
 
 bool bart::SdlGraphics::Initialize()
 {
@@ -34,6 +34,12 @@ bool bart::SdlGraphics::Initialize()
 
 void bart::SdlGraphics::Clean()
 {
+    if (m_FontTexture != nullptr)
+    {
+        SDL_DestroyTexture(m_FontTexture);
+        m_FontTexture = nullptr;
+    }
+
     SDL_DestroyRenderer(m_Renderer);
     SDL_DestroyWindow(m_Window);
 
@@ -96,24 +102,27 @@ void bart::SdlGraphics::Present()
     SDL_RenderPresent(m_Renderer);
 }
 
-void bart::SdlGraphics::SetColor(const int aRed, const int aGreen, const int aBlue, const int aAlpha)
+void bart::SdlGraphics::SetColor(const unsigned char aRed,
+                                 const unsigned char aGreen,
+                                 const unsigned char aBlue,
+                                 const unsigned char aAlpha)
 {
     SDL_SetRenderDrawColor(m_Renderer, aRed, aGreen, aBlue, aAlpha);
 }
 
-void bart::SdlGraphics::SetClearColor(int aRed, int aGreen, int aBlue)
+void bart::SdlGraphics::SetClearColor(unsigned char aRed, unsigned char aGreen, unsigned char aBlue)
 {
     m_ClearColor.Set(aRed, aGreen, aBlue, 255);
 }
 
-unsigned bart::SdlGraphics::LoadTexture(const string& aFilename)
+size_t bart::SdlGraphics::LoadTexture(const string& aFilename)
 {
-    const unsigned tKey = HashKey::Generate(aFilename);
+    const size_t tHashKey = std::hash<std::string>()(aFilename);
 
-    if (m_TexCache.count(tKey) > 0)
+    if (m_TexCache.count(tHashKey) > 0)
     {
-        m_TexCache[tKey]->Count++;
-        return tKey;
+        m_TexCache[tHashKey]->Count++;
+        return tHashKey;
     }
 
     SDL_Surface* tSurface = IMG_Load(aFilename.c_str());
@@ -125,10 +134,10 @@ unsigned bart::SdlGraphics::LoadTexture(const string& aFilename)
 
         if (tTex != nullptr)
         {
-            m_TexCache[tKey] = new Resource<SDL_Texture>();
-            m_TexCache[tKey]->Data = tTex;
-            m_TexCache[tKey]->Count = 1;
-            return tKey;
+            m_TexCache[tHashKey] = new Resource<SDL_Texture>();
+            m_TexCache[tHashKey]->Data = tTex;
+            m_TexCache[tHashKey]->Count = 1;
+            return tHashKey;
         }
     }
 
@@ -136,7 +145,7 @@ unsigned bart::SdlGraphics::LoadTexture(const string& aFilename)
     return 0;
 }
 
-void bart::SdlGraphics::UnloadTexture(unsigned aTextureId)
+void bart::SdlGraphics::UnloadTexture(size_t aTextureId)
 {
     if (m_TexCache.count(aTextureId) > 0)
     {
@@ -150,31 +159,31 @@ void bart::SdlGraphics::UnloadTexture(unsigned aTextureId)
     }
 }
 
-unsigned bart::SdlGraphics::LoadFont(const string& aFilename, int aFontSize)
+size_t bart::SdlGraphics::LoadFont(const string& aFilename, int aFontSize)
 {
     const std::string tFontName = aFilename + "_" + std::to_string(aFontSize);
-    const unsigned tKey = HashKey::Generate(tFontName);
+    const size_t tHashKey = std::hash<std::string>()(tFontName);
 
-    if (m_FntCache.count(tKey) > 0)
+    if (m_FntCache.count(tHashKey) > 0)
     {
-        m_FntCache[tKey]->Count++;
-        return tKey;
+        m_FntCache[tHashKey]->Count++;
+        return tHashKey;
     }
 
     TTF_Font* tFont = TTF_OpenFont(aFilename.c_str(), aFontSize * 2);
 
     if (tFont != nullptr)
     {
-        m_FntCache[tKey] = new Resource<TTF_Font>();
-        m_FntCache[tKey]->Data = tFont;
-        m_FntCache[tKey]->Count = 1;
-        return tKey;
+        m_FntCache[tHashKey] = new Resource<TTF_Font>();
+        m_FntCache[tHashKey]->Data = tFont;
+        m_FntCache[tHashKey]->Count = 1;
+        return tHashKey;
     }
 
     return 0;
 }
 
-void bart::SdlGraphics::UnloadFont(unsigned aFontId)
+void bart::SdlGraphics::UnloadFont(size_t aFontId)
 {
     if (m_FntCache.count(aFontId) > 0)
     {
@@ -282,66 +291,91 @@ void bart::SdlGraphics::Draw(const int aX, const int aY)
         tY -= m_Camera->GetY();
     }
 
-    SDL_RenderDrawPoint(m_Renderer, aX, aY);
+    SDL_RenderDrawPoint(m_Renderer, tX, tY);
 }
 
-void bart::SdlGraphics::Draw(unsigned int aTexture,
+void bart::SdlGraphics::Draw(size_t aTexture,
                              const Rectangle& aSrc,
                              const Rectangle& aDst,
                              float aAngle,
-                             bool aFlip,
-                             int aAlpha)
+                             bool aHorizontalFlip,
+                             bool aVerticalFlip,
+                             unsigned char aAlpha)
 {
-    SDL_Rect tSrcRect = {aSrc.X, aSrc.Y, aSrc.W, aSrc.H};
-    SDL_Rect tDstRect = {aDst.X, aDst.Y, aDst.W, aDst.H};
-
-    SDL_RendererFlip tFlip = SDL_FLIP_NONE;
-
-    if (aFlip)
+    if (aTexture)
     {
-        tFlip = SDL_FLIP_HORIZONTAL;
+        SDL_Rect tSrcRect = {aSrc.X, aSrc.Y, aSrc.W, aSrc.H};
+        SDL_Rect tDstRect = {aDst.X, aDst.Y, aDst.W, aDst.H};
+
+        int tFlipValue = SDL_FLIP_NONE;
+
+        if (aHorizontalFlip)
+        {
+            tFlipValue |= SDL_FLIP_HORIZONTAL;
+        }
+
+        if (aVerticalFlip)
+        {
+            tFlipValue |= SDL_FLIP_VERTICAL;
+        }
+
+        const SDL_RendererFlip tFlip = static_cast<SDL_RendererFlip>(tFlipValue);
+
+        SDL_Texture* tTex = m_TexCache[aTexture]->Data;
+
+        if (m_Camera != nullptr)
+        {
+            tDstRect.x -= m_Camera->GetX();
+            tDstRect.y -= m_Camera->GetY();
+        }
+
+        SDL_SetTextureBlendMode(tTex, SDL_BLENDMODE_BLEND);
+        SDL_SetTextureAlphaMod(tTex, aAlpha);
+        SDL_RenderCopyEx(m_Renderer, tTex, &tSrcRect, &tDstRect, aAngle, nullptr, tFlip);
     }
-
-    SDL_Texture* tTex = m_TexCache[aTexture]->Data;
-
-    if (m_Camera != nullptr)
-    {
-        tDstRect.x -= m_Camera->GetX();
-        tDstRect.y -= m_Camera->GetY();
-    }
-
-    SDL_SetTextureBlendMode(tTex, SDL_BLENDMODE_BLEND);
-    SDL_SetTextureAlphaMod(tTex, aAlpha);
-    SDL_RenderCopyEx(m_Renderer, tTex, &tSrcRect, &tDstRect, aAngle, nullptr, tFlip);
 }
 
-void bart::SdlGraphics::Draw(unsigned int aFont, const std::string& aText, int aX, int aY)
+void bart::SdlGraphics::Draw(size_t aFont, const std::string& aText, int aX, int aY)
 {
-    SDL_Color tColor;
-    SDL_GetRenderDrawColor(m_Renderer, &tColor.r, &tColor.g, &tColor.b, &tColor.a);
-
-    TTF_Font* tFnt = m_FntCache[aFont]->Data;
-    SDL_Surface* tSurface = TTF_RenderText_Solid(tFnt, aText.c_str(), tColor);
-    SDL_Texture* tTex = SDL_CreateTextureFromSurface(m_Renderer, tSurface);
-
-    int w = 0;
-    int h = 0;
-    SDL_QueryTexture(tTex, nullptr, nullptr, &w, &h);
-    SDL_Rect tDestination = {aX, aY, w, h};
-
-    if (m_Camera != nullptr)
+    if (aFont)
     {
-        tDestination.x -= m_Camera->GetX();
-        tDestination.y -= m_Camera->GetY();
+        SDL_Color tColor;
+        SDL_GetRenderDrawColor(m_Renderer, &tColor.r, &tColor.g, &tColor.b, &tColor.a);
+
+        TTF_Font* tFnt = m_FntCache[aFont]->Data;
+        SDL_Surface* tSurface = TTF_RenderText_Solid(tFnt, aText.c_str(), tColor);
+
+        if (tSurface != nullptr)
+        {
+            if (m_FontTexture != nullptr)
+            {
+                SDL_DestroyTexture(m_FontTexture);
+                m_FontTexture = nullptr;
+            }
+
+            m_FontTexture = SDL_CreateTextureFromSurface(m_Renderer, tSurface);
+            SDL_FreeSurface(tSurface);
+
+            if (m_FontTexture != nullptr)
+            {
+                int w = 0;
+                int h = 0;
+                SDL_QueryTexture(m_FontTexture, nullptr, nullptr, &w, &h);
+                SDL_Rect tDestination = {aX, aY, w, h};
+
+                if (m_Camera != nullptr)
+                {
+                    tDestination.x -= m_Camera->GetX();
+                    tDestination.y -= m_Camera->GetY();
+                }
+
+                SDL_RenderCopy(m_Renderer, m_FontTexture, nullptr, &tDestination);
+            }
+        }
     }
-
-    SDL_RenderCopy(m_Renderer, tTex, nullptr, &tDestination);
-
-    SDL_DestroyTexture(tTex);
-    SDL_FreeSurface(tSurface);
 }
 
-void bart::SdlGraphics::GetTextureSize(unsigned aTextureId, int* aWidth, int* aHeight)
+void bart::SdlGraphics::GetTextureSize(size_t aTextureId, int* aWidth, int* aHeight)
 {
     if (m_TexCache.count(aTextureId) > 0)
     {
@@ -355,7 +389,7 @@ void bart::SdlGraphics::GetTextureSize(unsigned aTextureId, int* aWidth, int* aH
     }
 }
 
-void bart::SdlGraphics::GetFontSize(unsigned aFontId, const string& aText, int* aWidth, int* aHeight)
+void bart::SdlGraphics::GetFontSize(size_t aFontId, const string& aText, int* aWidth, int* aHeight)
 {
     if (m_FntCache.count(aFontId) > 0)
     {
@@ -392,4 +426,24 @@ int bart::SdlGraphics::GetFontInCache() const
 void bart::SdlGraphics::SetCamera(Camera* aCamera)
 {
     m_Camera = aCamera;
+}
+
+void bart::SdlGraphics::Fill(const Rectangle& aRect)
+{
+    int x, y, w, h;
+    aRect.Get(&x, &y, &w, &h);
+    Fill(x, y, w, h);
+}
+
+void bart::SdlGraphics::Fill(int aX, int aY, int aWidth, int aHeight)
+{
+    SDL_Rect tRect = {aX, aY, aWidth, aHeight};
+
+    if (m_Camera != nullptr)
+    {
+        tRect.x -= m_Camera->GetX();
+        tRect.y -= m_Camera->GetY();
+    }
+
+    SDL_RenderFillRect(m_Renderer, &tRect);
 }

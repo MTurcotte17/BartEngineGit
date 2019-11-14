@@ -85,7 +85,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -108,14 +108,21 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;tinyxml2.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)externals\libs\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)externals\lib\$(PlatformTarget);$(SolutionDir)externals\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006  /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
+    <PostBuildEvent>
+      <Command>copy ..\externals\lib\$(PlatformTarget)\*.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL2.0 dll to the output folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -138,14 +145,21 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;tinyxml2.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)externals\libs\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)externals\lib\$(PlatformTarget);$(SolutionDir)externals\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006  /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
+    <PostBuildEvent>
+      <Command>copy ..\externals\lib\$(PlatformTarget)\*.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL2.0 dll to the output folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -172,14 +186,20 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;tinyxml2.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)externals\libs\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)externals\lib\$(PlatformTarget);$(SolutionDir)externals\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006  /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
+    <PostBuildEvent>
+      <Command>copy ..\externals\lib\$(PlatformTarget)\*.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL2.0 dll to the output folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -206,9 +226,15 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_mixer.lib;SDL2_ttf.lib;SDL2main.lib;tinyxml2.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)externals\libs\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)externals\lib\$(PlatformTarget);$(SolutionDir)externals\lib\$(PlatformTarget)\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>/ignore:4006  /ignore:4221 %(AdditionalOptions)</AdditionalOptions>
     </Lib>
+    <PostBuildEvent>
+      <Command>copy ..\externals\lib\$(PlatformTarget)\*.dll $(OutDir)</Command>
+    </PostBuildEvent>
+    <PostBuildEvent>
+      <Message>Copy SDL2.0 dll to the output folder</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="includes\Animation.h" />
@@ -229,7 +255,6 @@
     <ClInclude Include="includes\FileLogger.h" />
     <ClInclude Include="includes\GameState.h" />
     <ClInclude Include="includes\GraphicComponent.h" />
-    <ClInclude Include="includes\HashKey.h" />
     <ClInclude Include="includes\IAudio.h" />
     <ClInclude Include="includes\ICollision.h" />
     <ClInclude Include="includes\IGraphic.h" />
@@ -285,7 +310,6 @@
     <ClCompile Include="sources\Color.cpp" />
     <ClCompile Include="sources\Engine.cpp" />
     <ClCompile Include="sources\Entity.cpp" />
-    <ClCompile Include="sources\HashKey.cpp" />
     <ClCompile Include="sources\Layer.cpp" />
     <ClCompile Include="sources\Music.cpp" />
     <ClCompile Include="sources\NullAudio.cpp" />
@@ -318,62 +342,6 @@
     <ClCompile Include="sources\Transform.cpp" />
     <ClCompile Include="sources\VsLogger.cpp" />
     <ClCompile Include="sources\World.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\externals\libs\x86\libFLAC-8.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libfreetype-6.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libjpeg-9.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libmodplug-1.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libmpg123-0.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libogg-0.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libopus-0.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libopusfile-0.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libpng16-16.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libtiff-5.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libvorbis-0.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libvorbisfile-3.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libwebp-7.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_image.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_mixer.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_ttf.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\zlib1.dll">
-      <FileType>Document</FileType>
-    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

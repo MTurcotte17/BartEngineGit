@@ -8,7 +8,6 @@
   Color.cpp
   Engine.cpp
   Entity.cpp
-  HashKey.cpp
   Layer.cpp
   Music.cpp
   NullAudio.cpp
@@ -18,9 +17,9 @@
   NullLogger.cpp
   NullScene.cpp
   NullTimer.cpp
+  ImageLayer.cpp
   Generating Code...
   Compiling...
-  ImageLayer.cpp
   ObjectFactory.cpp
   ObjectLayer.cpp
   Point.cpp
@@ -40,10 +39,30 @@
   TileMap.cpp
   TileProperty.cpp
   Tileset.cpp
+  Transform.cpp
   Generating Code...
   Compiling...
-  Transform.cpp
   VsLogger.cpp
   World.cpp
   Generating Code...
-  bartengine.vcxproj -> D:\BartEngine_1.0.0\Debug\bartengine.lib
+  bartengine.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\bartengine.lib
+  Copy SDL2.0 dll to the output folder
+  ..\externals\lib\x86\libFLAC-8.dll
+  ..\externals\lib\x86\libfreetype-6.dll
+  ..\externals\lib\x86\libjpeg-9.dll
+  ..\externals\lib\x86\libmodplug-1.dll
+  ..\externals\lib\x86\libmpg123-0.dll
+  ..\externals\lib\x86\libogg-0.dll
+  ..\externals\lib\x86\libopus-0.dll
+  ..\externals\lib\x86\libopusfile-0.dll
+  ..\externals\lib\x86\libpng16-16.dll
+  ..\externals\lib\x86\libtiff-5.dll
+  ..\externals\lib\x86\libvorbis-0.dll
+  ..\externals\lib\x86\libvorbisfile-3.dll
+  ..\externals\lib\x86\libwebp-7.dll
+  ..\externals\lib\x86\SDL2.dll
+  ..\externals\lib\x86\SDL2_image.dll
+  ..\externals\lib\x86\SDL2_mixer.dll
+  ..\externals\lib\x86\SDL2_ttf.dll
+  ..\externals\lib\x86\zlib1.dll
+         18 file(s) copied.

@@ -16,14 +16,15 @@ namespace bart
         void Rotate(float aAngle);
         void SetWidth(float aWidth);
         void SetHeight(float aHeight);
-        void SetFlip(bool aFlip);
+        void SetFlip(bool aHorizontal, bool aVertical);
 
         float X{0.0f};
         float Y{0.0f};
         float Angle{0.0f};
         float Width{100.0f};
         float Height{100.0f};
-        bool Flipped{false};
+        bool HorizontalFlipped{false};
+        bool VerticalFlipped{false};
     };
 }
 

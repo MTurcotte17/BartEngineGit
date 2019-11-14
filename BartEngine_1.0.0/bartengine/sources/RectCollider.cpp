@@ -1,6 +1,6 @@
 #include <RectCollider.h>
 
-void bart::RectCollider::Update(Transform* aTransform, float aDelta)
+void bart::RectCollider::Update(Transform* aTransform, float /*aDelta*/)
 {
     if (aTransform != nullptr)
     {

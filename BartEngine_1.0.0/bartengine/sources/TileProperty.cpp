@@ -15,7 +15,7 @@ bart::ColorProperty::ColorProperty()
 
 void bart::ColorProperty::SetFromHex(const std::string& aHexValue)
 {
-    int tR, tG, tB, tA;
+    unsigned char tR, tG, tB, tA;
     StringHelper::GetColorComponents(aHexValue, &tR, &tG, &tB, &tA);
     Value.Set(tR, tG, tB, tA);
 }

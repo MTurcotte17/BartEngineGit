@@ -20,12 +20,13 @@ namespace bart
         void Unload();
 
     protected:
-        unsigned int mTexId{0};
+        size_t mTexId{0};
         Rectangle m_Destination{};
         Rectangle m_Source{};
         float m_Angle{0.0f};
-        bool m_Flip{false};
-        int m_Alpha{255};
+        bool m_HorizontalFlip{false};
+        bool m_VerticalFlip{false};
+        unsigned char m_Alpha{255};
     };
 }
 

@@ -117,7 +117,7 @@ void MenuOption::Update(float aDeltaTime)
 
         if (m_FlashCount > m_FlashNeeded)
         {
-            Load("GamePlay");
+            Load("LevelOne");
         }
     }
 }

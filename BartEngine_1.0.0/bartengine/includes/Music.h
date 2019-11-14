@@ -17,11 +17,11 @@ namespace bart
         void Pause() const;
         void Stop() const;
         void Resume() const;
-        void SetVolumne(int aVolume);
+        void SetVolumne(int aVolume) const;
         void Unload();
 
     private:
-        unsigned m_MusicId{0};
+        size_t m_MusicId{0};
     };
 }
 

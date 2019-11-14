@@ -13,12 +13,12 @@ void bart::NullInput::PoolEvents()
 {
 }
 
-bool bart::NullInput::IsKeyDown(EKeys aKey)
+bool bart::NullInput::IsKeyDown(EKeys /*aKey*/)
 {
     return false;
 }
 
-bool bart::NullInput::IsMouseButtonDown(EMouseButton aButton)
+bool bart::NullInput::IsMouseButtonDown(EMouseButton /*aButton*/)
 {
     return false;
 }
@@ -33,22 +33,22 @@ int bart::NullInput::GetMouseY() const
     return 0;
 }
 
-bool bart::NullInput::IsGamepadButtonDown(int aGamepad, EControllerButton aButton) const
+bool bart::NullInput::IsGamepadButtonDown(int /*aGamepad*/, EControllerButton /*aButton*/) const
 {
     return false;
 }
 
-int bart::NullInput::GetGamepadAxisX(int aGamePad, int aStick) const
+int bart::NullInput::GetGamepadAxisX(int /*aGamePad*/, int /*aStick*/) const
 {
     return 0;
 }
 
-int bart::NullInput::GetGamepadAxisY(int aGamePad, int aStick) const
+int bart::NullInput::GetGamepadAxisY(int /*aGamePad*/, int /*aStick*/) const
 {
     return 0;
 }
 
-bool bart::NullInput::IsTriggerDown(int aGamePad, int aTrigger)
+bool bart::NullInput::IsTriggerDown(int /*aGamePad*/, int /*aTrigger*/)
 {
     return false;
 }

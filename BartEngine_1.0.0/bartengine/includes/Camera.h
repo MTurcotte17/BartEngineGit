@@ -25,6 +25,7 @@ namespace bart
         bool CollideWith(const Rectangle& aRect);
         bool CollideWith(const Circle& aCircle);
         bool CollideWidth(int aX, int aY);
+        Rectangle& GetViewport() { return mViewport; }
 
     private:
         Rectangle mViewport;

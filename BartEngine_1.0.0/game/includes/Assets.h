@@ -23,5 +23,6 @@ public:
     static const string SCROLLING_BACKGROUND;
 	static const string BALLOON_TITLE;
 	static const string BALLOON_SELECT;
+	static const string PLAYER;
 };
 #endif

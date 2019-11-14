@@ -1,5 +1,6 @@
 #include <Layer.h>
 #include <tinyxml2.h>
+#include <Engine.h>
 
 void bart::Layer::ClearProperties()
 {
@@ -47,5 +48,5 @@ void bart::Layer::LoadLayerProperties(XMLNode* aNode)
     m_VerticalOffset = tLayerElement->FloatAttribute("offsety", 0.0f);
 
     const float tAlpha = tLayerElement->FloatAttribute("opacity", 1.0f);
-    m_Alpha = static_cast<int>(255.0f * tAlpha);
+    m_Alpha = static_cast<unsigned char>(255.0f * tAlpha);
 }

@@ -27,12 +27,13 @@ namespace bart
 
         bool Load(const std::string& aFilename);
         void Draw();
-        void Draw(int aFromX, int aFromY, int aToX, int aToY);
+        void Draw(const Rectangle& aViewport);
 
         int GetMapWidth() const { return mMapWidth; }
         int GetMapHeight() const { return mMapHeight; }
 
-        Layer* GetLayer(const std::string& aName) { return mMapInfo[aName]; }
+        template<class T>
+        T* GetLayer(const std::string& aName) { return dynamic_cast<T*>(mMapInfo[aName]); }
 
         void Register(const std::string& aType, BaseFactory* aFactory);
 
@@ -47,6 +48,8 @@ namespace bart
 
         int mMapWidth{0};
         int mMapHeight{0};
+        int m_TileWidth{0};
+        int m_TileHeight{0};
 
         std::string m_MapPath;
         std::vector<Layer*> m_LayerDepth;

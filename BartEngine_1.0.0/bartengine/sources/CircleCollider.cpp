@@ -1,7 +1,7 @@
 #include <CircleCollider.h>
 #include <MathHelper.h>
 
-void bart::CircleCollider::Update(Transform* aTransform, float aDelta)
+void bart::CircleCollider::Update(Transform* aTransform, float /*aDelta*/)
 {
     if (aTransform != nullptr)
     {

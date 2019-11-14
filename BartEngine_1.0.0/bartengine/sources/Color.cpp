@@ -24,7 +24,7 @@ bart::Color::Color()
     R = G = B = A = 255;
 }
 
-bart::Color::Color(const int aRed, const int aGreen, const int aBlue)
+bart::Color::Color(const unsigned char aRed, const unsigned char aGreen, const unsigned char aBlue)
 {
     R = aRed;
     G = aGreen;
@@ -32,7 +32,10 @@ bart::Color::Color(const int aRed, const int aGreen, const int aBlue)
     A = 255;
 }
 
-bart::Color::Color(const int aRed, const int aGreen, const int aBlue, const int aAlpha)
+bart::Color::Color(const unsigned char aRed,
+                   const unsigned char aGreen,
+                   const unsigned char aBlue,
+                   const unsigned char aAlpha)
 {
     R = aRed;
     G = aGreen;
@@ -40,7 +43,10 @@ bart::Color::Color(const int aRed, const int aGreen, const int aBlue, const int 
     A = aAlpha;
 }
 
-void bart::Color::Set(const int aRed, const int aGreen, const int aBlue, const int aAlpha)
+void bart::Color::Set(const unsigned char aRed,
+                      const unsigned char aGreen,
+                      const unsigned char aBlue,
+                      const unsigned char aAlpha)
 {
     R = aRed;
     G = aGreen;

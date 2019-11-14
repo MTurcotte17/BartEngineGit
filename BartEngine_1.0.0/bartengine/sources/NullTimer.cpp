@@ -14,6 +14,6 @@ float bart::NullTimer::GetTime()
     return 0.0f;
 }
 
-void bart::NullTimer::Wait(float aTime)
+void bart::NullTimer::Wait(float /*aTime*/)
 {
 }

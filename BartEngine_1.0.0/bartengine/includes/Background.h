@@ -22,7 +22,7 @@ namespace bart
         void Unload();
 
     protected:
-        unsigned mTexId{0};
+        size_t mTexId{0};
         Rectangle m_DestinationA{};
         Rectangle m_DestinationB{};
         Rectangle m_SourceA{};

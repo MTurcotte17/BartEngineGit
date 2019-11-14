@@ -17,16 +17,16 @@ void bart::Background::Load(const std::string& aFilename)
 void bart::Background::Draw()
 {
     IGraphic& tGraphic = Engine::Instance().GetGraphic();
-    tGraphic.Draw(mTexId, m_SourceA, m_DestinationA, 0.0f, false, 255);
-    tGraphic.Draw(mTexId, m_SourceB, m_DestinationB, 0.0f, false, 255);
+    tGraphic.Draw(mTexId, m_SourceA, m_DestinationA, 0.0f, false, false, 255);
+    tGraphic.Draw(mTexId, m_SourceB, m_DestinationB, 0.0f, false, false, 255);
 }
 
 void bart::Background::ScrollX(IGraphic& aGraphic, float aSpeed)
 {
-    int tW = aGraphic.GetScreenWidth();
+    const int tW = aGraphic.GetScreenWidth();
 
-    m_DestinationA.X += (int)aSpeed;
-    m_DestinationB.X += (int)aSpeed;
+    m_DestinationA.X += static_cast<int>(aSpeed);
+    m_DestinationB.X += static_cast<int>(aSpeed);
 
     if (aSpeed > 0)
     {

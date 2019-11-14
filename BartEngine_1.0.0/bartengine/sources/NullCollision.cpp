@@ -9,37 +9,37 @@ void bart::NullCollision::Clean()
 {
 }
 
-bool bart::NullCollision::IsColliding(const Rectangle& aRectA, const Rectangle& aRectB)
+bool bart::NullCollision::IsColliding(const Rectangle& /*aRectA*/, const Rectangle& /*aRectB*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Rectangle& aRect, const Point& aPoint)
+bool bart::NullCollision::IsColliding(const Rectangle& /*aRect*/, const Point& /*aPoint*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Rectangle& aRect, int aX, int aY)
+bool bart::NullCollision::IsColliding(const Rectangle& /*aRect*/, int /*aX*/, int /*aY*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Circle& aCircle, int aX, int aY)
+bool bart::NullCollision::IsColliding(const Circle& /*aCircle*/, int /*aX*/, int /*aY*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Circle& aCircle, const Point& aPoint)
+bool bart::NullCollision::IsColliding(const Circle& /*aCircle*/, const Point& /*aPoint*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Circle& aCircleA, const Circle& aCircleB)
+bool bart::NullCollision::IsColliding(const Circle& /*aCircleA*/, const Circle& /*aCircleB*/)
 {
     return false;
 }
 
-bool bart::NullCollision::IsColliding(const Rectangle& aRect, const Circle& aCircle)
+bool bart::NullCollision::IsColliding(const Rectangle& /*aRect*/, const Circle& /*aCircle*/)
 {
     return false;
 }

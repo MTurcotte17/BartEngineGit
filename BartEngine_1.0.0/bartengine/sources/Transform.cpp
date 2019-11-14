@@ -42,7 +42,8 @@ void bart::Transform::SetHeight(const float aHeight)
     Height = aHeight;
 }
 
-void bart::Transform::SetFlip(const bool aFlip)
+void bart::Transform::SetFlip(const bool aHorizontal, const bool aVertical)
 {
-    Flipped = aFlip;
+    HorizontalFlipped = aHorizontal;
+    VerticalFlipped = aVertical;
 }

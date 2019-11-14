@@ -1,5 +1,4 @@
 #include <SdlAudio.h>
-#include <HashKey.h>
 #include <SDL_mixer.h>
 #include <Engine.h>
 
@@ -19,13 +18,14 @@ void bart::SdlAudio::Clean()
     Mix_CloseAudio();
 }
 
-unsigned bart::SdlAudio::LoadSound(const std::string& aFilename)
+size_t bart::SdlAudio::LoadSound(const std::string& aFilename)
 {
-    const unsigned tHashValue = HashKey::Generate(aFilename.c_str());
-    if (m_SndCache.count(tHashValue) > 0)
+    const size_t tHashKey = std::hash<std::string>()(aFilename);
+
+    if (m_SndCache.count(tHashKey) > 0)
     {
-        m_SndCache[tHashValue]->Count++;
-        return tHashValue;
+        m_SndCache[tHashKey]->Count++;
+        return tHashKey;
     }
 
     Mix_Chunk* pChunk = Mix_LoadWAV(aFilename.c_str());
@@ -36,14 +36,14 @@ unsigned bart::SdlAudio::LoadSound(const std::string& aFilename)
         return 0;
     }
 
-    m_SndCache[tHashValue] = new Resource<struct Mix_Chunk>();
-    m_SndCache[tHashValue]->Data = pChunk;
-    m_SndCache[tHashValue]->Count = 1;
+    m_SndCache[tHashKey] = new Resource<struct Mix_Chunk>();
+    m_SndCache[tHashKey]->Data = pChunk;
+    m_SndCache[tHashKey]->Count = 1;
 
-    return tHashValue;
+    return tHashKey;
 }
 
-void bart::SdlAudio::UnloadMusic(unsigned aMusic)
+void bart::SdlAudio::UnloadMusic(size_t aMusic)
 {
     if (m_MusCache.count(aMusic) > 0)
     {
@@ -57,7 +57,7 @@ void bart::SdlAudio::UnloadMusic(unsigned aMusic)
     }
 }
 
-void bart::SdlAudio::UnloadSound(unsigned aSound)
+void bart::SdlAudio::UnloadSound(size_t aSound)
 {
     if (m_SndCache.count(aSound) > 0)
     {
@@ -70,13 +70,13 @@ void bart::SdlAudio::UnloadSound(unsigned aSound)
     }
 }
 
-unsigned bart::SdlAudio::LoadMusic(const std::string& aFilename)
+size_t bart::SdlAudio::LoadMusic(const std::string& aFilename)
 {
-    const unsigned int tHashValue = HashKey::Generate(aFilename.c_str());
-    if (m_MusCache.count(tHashValue) > 0)
+    const size_t tHashKey = std::hash<std::string>()(aFilename);
+    if (m_MusCache.count(tHashKey) > 0)
     {
-        m_MusCache[tHashValue]->Count++;
-        return tHashValue;
+        m_MusCache[tHashKey]->Count++;
+        return tHashKey;
     }
 
     Mix_Music* pMusic = Mix_LoadMUS(aFilename.c_str());
@@ -87,39 +87,39 @@ unsigned bart::SdlAudio::LoadMusic(const std::string& aFilename)
         return 0;
     }
 
-    m_MusCache[tHashValue] = new Resource<struct _Mix_Music>();
-    m_MusCache[tHashValue]->Data = pMusic;
-    m_MusCache[tHashValue]->Count = 1;
+    m_MusCache[tHashKey] = new Resource<struct _Mix_Music>();
+    m_MusCache[tHashKey]->Data = pMusic;
+    m_MusCache[tHashKey]->Count = 1;
 
-    return tHashValue;
+    return tHashKey;
 }
 
-void bart::SdlAudio::PlaySFX(const unsigned aSound, const int aLoop)
+void bart::SdlAudio::PlaySFX(const size_t aSound, const int aLoop)
 {
     Mix_PlayChannel(-1, m_SndCache[aSound]->Data, aLoop);
 }
 
-void bart::SdlAudio::PlayMusic(const unsigned aMusic, const int aLoop)
+void bart::SdlAudio::PlayMusic(const size_t aMusic, const int aLoop)
 {
     Mix_PlayMusic(m_MusCache[aMusic]->Data, aLoop);
 }
 
-void bart::SdlAudio::PauseMusic(unsigned aMusic)
+void bart::SdlAudio::PauseMusic()
 {
     Mix_PauseMusic();
 }
 
-void bart::SdlAudio::StopMusic(unsigned aMusic)
+void bart::SdlAudio::StopMusic()
 {
     Mix_HaltMusic();
 }
 
-void bart::SdlAudio::ResumeMusic(unsigned aMusic)
+void bart::SdlAudio::ResumeMusic()
 {
     Mix_ResumeMusic();
 }
 
-void bart::SdlAudio::SetMusicVolume(unsigned aMusic, int aVolume)
+void bart::SdlAudio::SetMusicVolume(int aVolume)
 {
     Mix_VolumeMusic(aVolume);
 }

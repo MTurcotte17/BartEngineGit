@@ -4,8 +4,7 @@
 #include <TileLayer.h>
 #include <ObjectLayer.h>
 #include <ImageLayer.h>
-#include <MathHelper.h>
-#include "StringHelper.h"
+#include <StringHelper.h>
 
 using namespace tinyxml2;
 
@@ -13,8 +12,11 @@ void bart::TileMap::Clean()
 {
     for (TLayerMap::iterator tItr = mMapInfo.begin(); tItr != mMapInfo.end(); ++tItr)
     {
-        tItr->second->Clean();
-        delete tItr->second;
+        if (tItr->second != nullptr)
+        {
+            tItr->second->Clean();
+            delete tItr->second;
+        }
     }
 
     mMapInfo.clear();
@@ -24,14 +26,14 @@ void bart::TileMap::Clean()
 
 void bart::TileMap::GetMapPosition(const float aX, const float aY, int* aMapX, int* aMapY) const
 {
-    *aMapX = static_cast<int>(aX) / m_Tileset.GetTileWidth();
-    *aMapY = static_cast<int>(aY) / m_Tileset.GetTileHeight();
+    *aMapX = static_cast<int>(aX) / m_TileWidth;
+    *aMapY = static_cast<int>(aY) / m_TileHeight;
 }
 
 void bart::TileMap::GetWorldPosition(const int aMapX, const int aMapY, float* aX, float* aY) const
 {
-    *aX = static_cast<float>(aMapX * m_Tileset.GetTileWidth());
-    *aY = static_cast<float>(aMapY * m_Tileset.GetTileHeight());
+    *aX = static_cast<float>(aMapX * m_TileWidth);
+    *aY = static_cast<float>(aMapY * m_TileHeight);
 }
 
 void bart::TileMap::Register(const std::string& aType, BaseFactory* aFactory)
@@ -52,12 +54,14 @@ void bart::TileMap::LoadMap(XMLNode* aNode)
 
     mMapWidth = tMapElement->IntAttribute("width");
     mMapHeight = tMapElement->IntAttribute("height");
+    m_TileWidth = tMapElement->IntAttribute("tilewidth");
+    m_TileHeight = tMapElement->IntAttribute("tileheight");
 
     const char* tBackgroundColor = tMapElement->Attribute("backgroundcolor");
     if (tBackgroundColor != nullptr)
     {
         const std::string tColor = tBackgroundColor;
-        int tR, tG, tB, tA;
+        unsigned char tR, tG, tB, tA;
 
         StringHelper::GetColorComponents(tColor, &tR, &tG, &tB, &tA);
         Engine::Instance().GetGraphic().SetClearColor(tR, tG, tB);
@@ -86,7 +90,7 @@ void bart::TileMap::LoadMap(XMLNode* aNode)
             else if (tNodeValue == "layer")
             {
                 TileLayer* tLayer = new TileLayer();
-                tLayer->Load(tMapChild, &m_Tileset);
+                tLayer->Load(tMapChild, &m_Tileset, m_TileWidth, m_TileHeight);
                 AddLayer(tLayer);
             }
             else if (tNodeValue == "objectgroup")
@@ -137,21 +141,13 @@ bool bart::TileMap::Load(const std::string& aFilename)
 
 void bart::TileMap::Draw()
 {
-    Draw(0, 0, mMapWidth, mMapHeight);
+    Draw({0, 0, mMapWidth * m_TileWidth, mMapHeight * m_TileHeight});
 }
 
-void bart::TileMap::Draw(int aFromX, int aFromY, int aToX, int aToY)
+void bart::TileMap::Draw(const Rectangle& aViewport)
 {
-    const int tTileW = m_Tileset.GetTileWidth();
-    const int tTileH = m_Tileset.GetTileHeight();
-
-    aFromX = MathHelper::Clamp(aFromX, 0, mMapWidth);
-    aFromY = MathHelper::Clamp(aFromY, 0, mMapHeight);
-    aToX = MathHelper::Clamp(aToX, 0, mMapWidth);
-    aToY = MathHelper::Clamp(aToY, 0, mMapHeight);
-
     for (size_t i = 0; i < m_LayerDepth.size(); i++)
     {
-        m_LayerDepth[i]->Draw(aFromX, aFromY, aToX, aToY, tTileW, tTileH);
+        m_LayerDepth[i]->Draw(aViewport);
     }
 }

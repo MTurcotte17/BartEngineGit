@@ -17,7 +17,7 @@ namespace bart
         void Unload();
 
     private:
-        unsigned m_SoundId{0};
+        size_t m_SoundId{0};
     };
 }
 

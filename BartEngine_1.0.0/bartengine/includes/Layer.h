@@ -2,6 +2,7 @@
 #define BART_LAYER
 
 #include <TiledProperty.h>
+#include <Rectangle.h>
 
 namespace tinyxml2
 {
@@ -17,9 +18,7 @@ namespace bart
     public:
         virtual ~Layer() = default;
 
-        virtual void Draw(int aFromX, int aFromY, int aToX, int aToY, int aWidth, int aHeight)
-        {
-        }
+        virtual void Draw(const Rectangle& aViewport) = 0;
 
         virtual void Clean() = 0;
 
@@ -45,7 +44,7 @@ namespace bart
         bool m_Visible{false};
         int m_Width{0};
         int m_Height{0};
-        int m_Alpha{255};
+        unsigned char m_Alpha{255};
         float m_HorizontalOffset{0.0f};
         float m_VerticalOffset{0.0f};
         TiledProperties m_Properties;

@@ -22,7 +22,7 @@ namespace bart
 
     private:
         std::string m_Text;
-        unsigned m_FontId{0};
+        size_t m_FontId{0};
         int m_X{0};
         int m_Y{0};
     };

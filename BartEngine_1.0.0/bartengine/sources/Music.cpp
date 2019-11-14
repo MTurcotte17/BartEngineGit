@@ -13,22 +13,22 @@ void bart::Music::Play(int aLoop) const
 
 void bart::Music::Pause() const
 {
-    Engine::Instance().GetAudio().PauseMusic(m_MusicId);
+    Engine::Instance().GetAudio().PauseMusic();
 }
 
 void bart::Music::Stop() const
 {
-    Engine::Instance().GetAudio().StopMusic(m_MusicId);
+    Engine::Instance().GetAudio().StopMusic();
 }
 
 void bart::Music::Resume() const
 {
-    Engine::Instance().GetAudio().ResumeMusic(m_MusicId);
+    Engine::Instance().GetAudio().ResumeMusic();
 }
 
-void bart::Music::SetVolumne(int aVolume)
+void bart::Music::SetVolumne(const int aVolume) const
 {
-    Engine::Instance().GetAudio().SetMusicVolume(m_MusicId, aVolume);
+    Engine::Instance().GetAudio().SetMusicVolume(aVolume);
 }
 
 void bart::Music::Unload()

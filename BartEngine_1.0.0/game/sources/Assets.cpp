@@ -16,4 +16,5 @@ const string Assets::BACKGROUND_MAIN_MENU = "Assets/Images/mainmenu.png";
 const string Assets::SCROLLING_BACKGROUND = "Assets/Images/stars.png";
 const string Assets::BALLOON_TITLE = "Assets/Images/Title.jpeg";
 const string Assets::BALLOON_SELECT = "Assets/Images/SelectBalloon.png";
+const string Assets::PLAYER = "Assets/Images/Player.png";
 

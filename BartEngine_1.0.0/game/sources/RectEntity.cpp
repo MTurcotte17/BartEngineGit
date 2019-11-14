@@ -14,7 +14,34 @@ void RectEntity::Draw()
 
 void RectEntity::Update(float aDeltaTime)
 {
+	//EX COL
+	/*
+	DemoMap* tEntity = static_cast<DemoMap*>(Engine::Instance().GetScene().FindEntity("DemoMap"));
+	TileMap* tMap = tEntity->GetMap();
+	TileLayer* tLayer = tMap->GetLayer<TileLayer>("Collision");
 
+	
+	m_Destination.Y = static_cast<int>(m_Transform->Y);
+
+	if(tLayer != nullptr)
+	{
+		m_Destination.X = static_cast<int>(m_Transform->X);
+		if(tLayer.IsCollising(m_Destination) != 0)
+		{
+			m_Transform.X = m_OldX;
+			m_Destination.X = m_OldX;
+		}
+
+		m_Destination.Y = static_cast<int>(m_Transform->Y);
+		if(tLayer.IsCollising(m_Destination) != 0)
+		{
+			m_Transform.Y = m_OldY;
+			m_Destination.Y = m_OldY;
+		}
+	}
+
+
+	*/
 }
 
 void RectEntity::Start()

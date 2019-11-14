@@ -48,9 +48,6 @@
     <Filter Include="Source Files\Null">
       <UniqueIdentifier>{7b732200-8301-45e2-88e0-ce6ff1d1b513}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SDL20">
-      <UniqueIdentifier>{825e8242-8321-4ff1-a363-3b8485c2cc5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{c367e51b-9622-4faf-a894-b7a205b7ea28}</UniqueIdentifier>
     </Filter>
@@ -131,9 +128,6 @@
     <ClInclude Include="includes\SceneManager.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="includes\HashKey.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="includes\EKeys.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
@@ -206,9 +200,6 @@
     <ClInclude Include="includes\Text.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="includes\Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\Background.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
@@ -251,6 +242,9 @@
     <ClInclude Include="includes\ObjectFactory.h">
       <Filter>Header Files\Tiled</Filter>
     </ClInclude>
+    <ClInclude Include="includes\Resource.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\SdlGraphics.cpp">
@@ -285,9 +279,6 @@
     </ClCompile>
     <ClCompile Include="sources\SceneManager.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\HashKey.cpp">
-      <Filter>Source Files\Utils</Filter>
     </ClCompile>
     <ClCompile Include="sources\Engine.cpp">
       <Filter>Source Files</Filter>
@@ -382,61 +373,5 @@
     <ClCompile Include="sources\SdlInput.cpp">
       <Filter>Source Files\SDL20</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <CopyFileToFolders Include="..\externals\libs\x86\libFLAC-8.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libfreetype-6.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libjpeg-9.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libmodplug-1.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libmpg123-0.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libogg-0.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libopus-0.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libopusfile-0.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libpng16-16.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libtiff-5.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libvorbis-0.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libvorbisfile-3.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\libwebp-7.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_image.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_mixer.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\SDL2_ttf.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
-    <CopyFileToFolders Include="..\externals\libs\x86\zlib1.dll">
-      <Filter>SDL20</Filter>
-    </CopyFileToFolders>
   </ItemGroup>
 </Project>

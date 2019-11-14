@@ -21,7 +21,11 @@ namespace bart
             return "";
         }
 
-        static void GetColorComponents(const std::string& aColor, int* aR, int* aG, int* aB, int* aA)
+        static void GetColorComponents(const std::string& aColor,
+                                       unsigned char* aR,
+                                       unsigned char* aG,
+                                       unsigned char* aB,
+                                       unsigned char* aA)
         {
             if (aColor.empty())
             {
@@ -37,32 +41,43 @@ namespace bart
 
                 int tIdx = 0;
 
+                int tR, tG, tB, tA;
+
                 std::stringstream tStringStream;
 
                 if (tColorLen == 8)
                 {
                     tStringStream << std::hex << tColor.substr(tIdx, 2);
-                    tStringStream >> *aA;
+                    tStringStream >> tA;
                     tStringStream.clear();
 
                     tIdx += 2;
                 }
+                else
+                {
+                    tA = 255;
+                }
 
                 tStringStream << std::hex << tColor.substr(tIdx, 2);
-                tStringStream >> *aR;
+                tStringStream >> tR;
                 tStringStream.clear();
 
                 tIdx += 2;
 
                 tStringStream << std::hex << tColor.substr(tIdx, 2);
-                tStringStream >> *aG;
+                tStringStream >> tG;
                 tStringStream.clear();
 
                 tIdx += 2;
 
                 tStringStream << std::hex << tColor.substr(tIdx, 2);
-                tStringStream >> *aB;
+                tStringStream >> tB;
                 tStringStream.clear();
+
+                *aR = static_cast<unsigned char>(tR);
+                *aG = static_cast<unsigned char>(tG);
+                *aB = static_cast<unsigned char>(tB);
+                *aA = static_cast<unsigned char>(tA);
             }
         }
     };

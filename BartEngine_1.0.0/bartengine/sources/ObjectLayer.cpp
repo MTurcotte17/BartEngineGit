@@ -1,6 +1,10 @@
 #include <ObjectLayer.h>
 #include <tinyxml2.h>
 
+void bart::ObjectLayer::Draw(const Rectangle& /*aViewport*/)
+{
+}
+
 bool bart::ObjectLayer::Load(XMLNode* aNode, ObjectFactory* aFactory)
 {
     ClearProperties();
@@ -49,4 +53,5 @@ bool bart::ObjectLayer::Load(XMLNode* aNode, ObjectFactory* aFactory)
 
 void bart::ObjectLayer::Clean()
 {
+    m_Properties.Clear();
 }

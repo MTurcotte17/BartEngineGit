@@ -80,6 +80,15 @@
     <ClCompile Include="sources\RectEntity.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="sources\LevelOne.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Player.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\LevelOneMap.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\GamePlay.h">
@@ -128,6 +137,15 @@
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
     <ClInclude Include="includes\RectEntity.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\LevelOne.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Player.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\LevelOneMap.h">
       <Filter>Header Files\Entities</Filter>
     </ClInclude>
   </ItemGroup>

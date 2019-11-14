@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.10.30" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextlayerid="4" nextobjectid="1">
+<map version="1.2" tiledversion="2019.10.30" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="2">
  <tileset firstgid="1" source="FinalSet.tsx"/>
+ <tileset firstgid="46" source="../../../../../BartEngine_1.0.0/game/Assets/Demo/FinalSet.tsx"/>
  <imagelayer id="2" name="Stars">
   <image source="../Images/stars.png" width="800" height="559"/>
  </imagelayer>
@@ -30,4 +31,35 @@
 35,36,35,36,35,36,35,35,36,20,21,20,20,21,20,20,21,20,35,36,35,36,35,36,35
 </data>
  </layer>
+ <layer id="6" name="Collision" width="25" height="19" visible="0">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,86,86,0,0,0,0,0,0,0,0,0,0,0,86,86,86,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,86,86,0,0,0,86,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,86,86,86,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,86,86,86,86,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+86,86,86,86,86,86,86,86,0,0,0,0,0,0,0,0,0,86,86,86,86,86,86,86,86,
+0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,0,0,86,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,86,86,86,86,86,86,86,86,86,86,86,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup color="#ff0000" id="4" name="Entity">
+  <object id="1" name="PlayerSpawn" type="Player" x="70" y="440" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="70"/>
+    <property name="StartY" type="int" value="440"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

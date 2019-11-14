@@ -4,7 +4,7 @@
 void bart::Sprite::Load(const std::string& aFilename)
 {
     IGraphic& tGraphic = Engine::Instance().GetGraphic();
-    const unsigned int tTex = tGraphic.LoadTexture(aFilename);
+    const size_t tTex = tGraphic.LoadTexture(aFilename);
 
     if (tTex != 0)
     {
@@ -21,10 +21,10 @@ void bart::Sprite::Load(const std::string& aFilename)
 void bart::Sprite::Draw()
 {
     IGraphic& tGraphic = Engine::Instance().GetGraphic();
-    tGraphic.Draw(mTexId, m_Source, m_Destination, m_Angle, m_Flip, m_Alpha);
+    tGraphic.Draw(mTexId, m_Source, m_Destination, m_Angle, m_HorizontalFlip, m_VerticalFlip, m_Alpha);
 }
 
-void bart::Sprite::Update(Transform* aTransform, float aDelta)
+void bart::Sprite::Update(Transform* aTransform, float /*aDelta*/)
 {
     if (aTransform != nullptr)
     {
@@ -33,7 +33,8 @@ void bart::Sprite::Update(Transform* aTransform, float aDelta)
         m_Destination.W = static_cast<int>(aTransform->Width);
         m_Destination.H = static_cast<int>(aTransform->Height);
         m_Angle = aTransform->Angle;
-        m_Flip = aTransform->Flipped;
+        m_HorizontalFlip = aTransform->HorizontalFlipped;
+        m_VerticalFlip = aTransform->VerticalFlipped;
     }
 }
 

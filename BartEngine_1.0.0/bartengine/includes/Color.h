@@ -8,9 +8,9 @@ namespace bart
     struct Color
     {
         Color();
-        Color(int aRed, int aGreen, int aBlue);
-        Color(int aRed, int aGreen, int aBlue, int aAlpha);
-        void Set(int aRed, int aGreen, int aBlue, int aAlpha);
+        Color(unsigned char aRed, unsigned char aGreen, unsigned char aBlue);
+        Color(unsigned char aRed, unsigned char aGreen, unsigned char aBlue, unsigned char aAlpha);
+        void Set(unsigned char aRed, unsigned char aGreen, unsigned char aBlue, unsigned char aAlpha);
         std::string ToString() const;
 
         static const Color& Red;
@@ -31,10 +31,10 @@ namespace bart
         static const Color& CornflowerBlue;
         static const Color& Orange;
 
-        unsigned R{255};
-        unsigned G{255};
-        unsigned B{255};
-        unsigned A{255};
+        unsigned char R{255};
+        unsigned char G{255};
+        unsigned char B{255};
+        unsigned char A{255};
     };
 }
 #endif

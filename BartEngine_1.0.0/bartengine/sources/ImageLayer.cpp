@@ -1,5 +1,6 @@
 #include <ImageLayer.h>
 #include <tinyxml2.h>
+#include <iostream>
 
 bool bart::ImageLayer::Load(XMLNode* aNode, const std::string& aAssetPath)
 {
@@ -41,15 +42,19 @@ bool bart::ImageLayer::Load(XMLNode* aNode, const std::string& aAssetPath)
     return true;
 }
 
-void bart::ImageLayer::Draw(int aFromX, int aFromY, int aToX, int aToY, int aWidth, int aHeight)
+void bart::ImageLayer::Draw(const Rectangle& aViewport)
 {
     if (m_Visible && m_TextureId > 0)
     {
-        Engine::Instance().GetGraphic().Draw(m_TextureId, m_Source, m_Destination, 0.0f, false, m_Alpha);
+        if (Engine::Instance().GetCollision().IsColliding(aViewport, m_Destination))
+        {
+            Engine::Instance().GetGraphic().Draw(m_TextureId, m_Source, m_Destination, 0.0f, false, false, m_Alpha);
+        }
     }
 }
 
 void bart::ImageLayer::Clean()
 {
     Engine::Instance().GetGraphic().UnloadTexture(m_TextureId);
+    m_Properties.Clear();
 }

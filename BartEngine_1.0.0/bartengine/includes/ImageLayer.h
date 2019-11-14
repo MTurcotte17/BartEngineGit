@@ -19,11 +19,11 @@ namespace bart
     public:
         virtual ~ImageLayer() = default;
         bool Load(XMLNode* aNode, const std::string& aAssetPath);
-        void Draw(int aFromX, int aFromY, int aToX, int aToY, int aWidth, int aHeight) override;
+        void Draw(const Rectangle& aViewport) override;
         void Clean() override;
 
     private:
-        unsigned m_TextureId{0};
+        size_t m_TextureId{0};
         Rectangle m_Source;
         Rectangle m_Destination;
     };

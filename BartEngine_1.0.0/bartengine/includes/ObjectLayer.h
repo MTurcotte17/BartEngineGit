@@ -10,6 +10,8 @@ namespace bart
     {
     public:
         virtual ~ObjectLayer() = default;
+
+        void Draw(const Rectangle& aViewport) override;
         bool Load(XMLNode* aNode, ObjectFactory* aFactory);
         void Clean() override;
     };

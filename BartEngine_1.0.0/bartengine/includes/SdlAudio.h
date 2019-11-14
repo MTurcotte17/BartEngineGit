@@ -4,7 +4,7 @@
 #include <string>
 #include <IAudio.h>
 #include <map>
-#include "Resource.h"
+#include <Resource.h>
 
 struct Mix_Chunk;
 struct _Mix_Music;
@@ -19,24 +19,24 @@ namespace bart
         bool Initialize() override;
         void Clean() override;
 
-        unsigned LoadSound(const std::string& aFilename) override;
-        void UnloadMusic(unsigned aMusic) override;
-        unsigned LoadMusic(const std::string& aFilename) override;
-        void UnloadSound(unsigned aSound) override;
+        size_t LoadSound(const std::string& aFilename) override;
+        void UnloadMusic(size_t aMusic) override;
+        size_t LoadMusic(const std::string& aFilename) override;
+        void UnloadSound(size_t aSound) override;
 
-        void PlaySFX(unsigned aSound, int aLoop) override;
-        void PlayMusic(unsigned aMusic, int aLoop) override;
-        void PauseMusic(unsigned aMusic) override;
-        void StopMusic(unsigned aMusic) override;
-        void ResumeMusic(unsigned aMusic) override;
-        void SetMusicVolume(unsigned aMusic, int aVolume) override;
+        void PlaySFX(size_t aSound, int aLoop) override;
+        void PlayMusic(size_t aMusic, int aLoop) override;
+        void PauseMusic() override;
+        void StopMusic() override;
+        void ResumeMusic() override;
+        void SetMusicVolume(int aVolume) override;
 
         int GetSoundInCache() const override;
         int GetMusicInCache() const override;
 
     private:
-        typedef std::map<unsigned, Resource<Mix_Chunk>*> TChunkMap;
-        typedef std::map<unsigned, Resource<_Mix_Music>*> TMusicMap;
+        typedef std::map<size_t, Resource<Mix_Chunk>*> TChunkMap;
+        typedef std::map<size_t, Resource<_Mix_Music>*> TMusicMap;
 
         TChunkMap m_SndCache;
         TMusicMap m_MusCache;

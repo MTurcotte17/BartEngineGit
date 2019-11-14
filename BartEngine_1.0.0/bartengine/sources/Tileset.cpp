@@ -13,7 +13,7 @@ bool bart::Tileset::Load(XMLNode* aNode, const std::string& aAssetPath)
     XMLElement* tTileElement = nullptr;
     XMLNode* tImageNode = aNode->FirstChild();
 
-    m_FirstIndex = aNode->ToElement()->IntAttribute("firstgid");
+    const int tFirstIndex = aNode->ToElement()->IntAttribute("firstgid");
 
     if (tImageNode != nullptr)
     {
@@ -30,11 +30,10 @@ bool bart::Tileset::Load(XMLNode* aNode, const std::string& aAssetPath)
 
     if (tTileElement != nullptr)
     {
-        m_Name = tTileElement->Attribute("name");
-        m_Columns = tTileElement->IntAttribute("columns");
-        m_TileWidth = tTileElement->IntAttribute("tilewidth");
-        m_TileHeight = tTileElement->IntAttribute("tileheight");
-        m_TileCount = tTileElement->IntAttribute("tilecount");
+        int tColumns = tTileElement->IntAttribute("columns");
+        int tTileWidth = tTileElement->IntAttribute("tilewidth");
+        int tTileHeight = tTileElement->IntAttribute("tileheight");
+        int tTileCount = tTileElement->IntAttribute("tilecount");
 
         XMLNode* tNext = tTileElement->FirstChild();
 
@@ -53,22 +52,23 @@ bool bart::Tileset::Load(XMLNode* aNode, const std::string& aAssetPath)
                 }
 
                 std::string tImagePath = aAssetPath + std::string(tFilepath);
-                m_ImageWidth = tAtlasElement->IntAttribute("width");
-                m_ImageHeight = tAtlasElement->IntAttribute("height");
-                m_TextureId = Engine::Instance().GetGraphic().LoadTexture(tImagePath);
+                size_t tTextureId = Engine::Instance().GetGraphic().LoadTexture(tImagePath);
 
-                if (m_TextureId > 0)
+                if (tTextureId > 0)
                 {
-                    int tTileNumber = m_FirstIndex;
+                    m_TextureIds.push_back(tTextureId);
+                    int tTileNumber = tFirstIndex;
                     int tY = 0;
                     int tX = 0;
 
-                    for (int i = 0; i < m_TileCount; i++, tTileNumber++)
+                    for (int i = 0; i < tTileCount; i++, tTileNumber++)
                     {
-                        tY = i / m_Columns;
-                        tX = i - (tY * m_Columns);
-                        m_SourceMap[tTileNumber] = new Rectangle();
-                        m_SourceMap[tTileNumber]->Set(tX * m_TileWidth, tY * m_TileHeight, m_TileWidth, m_TileHeight);
+                        tY = i / tColumns;
+                        tX = i - (tY * tColumns);
+
+                        m_SourceMap[tTileNumber] = new Tile();
+                        m_SourceMap[tTileNumber]->Texture = tTextureId;
+                        m_SourceMap[tTileNumber]->Bounds = {tX * tTileWidth, tY * tTileHeight, tTileWidth, tTileHeight};
                     }
                 }
             }
@@ -83,21 +83,22 @@ bool bart::Tileset::Load(XMLNode* aNode, const std::string& aAssetPath)
     return false;
 }
 
-void bart::Tileset::GetTile(const int aIndex, int* aX, int* aY, int* aWidth, int* aHeight)
+bart::Tile* bart::Tileset::GetTile(const int aIndex)
 {
-    *aX = m_SourceMap[aIndex]->X;
-    *aY = m_SourceMap[aIndex]->Y;
-    *aWidth = m_SourceMap[aIndex]->W;
-    *aHeight = m_SourceMap[aIndex]->H;
+    return m_SourceMap[aIndex];
 }
 
 void bart::Tileset::Clean()
 {
-    for (TRectangleMap::iterator i = m_SourceMap.begin(); i != m_SourceMap.end(); ++i)
+    for (TTileMap::iterator i = m_SourceMap.begin(); i != m_SourceMap.end(); ++i)
     {
         delete i->second;
     }
 
     m_SourceMap.clear();
-    Engine::Instance().GetGraphic().UnloadTexture(m_TextureId);
+
+    for (size_t i = 0; i < m_TextureIds.size(); i++)
+    {
+        Engine::Instance().GetGraphic().UnloadTexture(m_TextureIds[i]);
+    }
 }

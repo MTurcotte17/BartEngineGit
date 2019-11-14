@@ -1,7 +1,7 @@
 #include <Entity.h>
 #include <Engine.h>
 
-void bart::Entity::Update(float aDeltaTime)
+void bart::Entity::Update(float /*aDeltaTime*/)
 {
 }
 

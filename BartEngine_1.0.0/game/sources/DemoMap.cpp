@@ -17,21 +17,21 @@ void DemoMap::Update(float aDeltaTime)
 {
     IInput& tInput = Engine::Instance().GetInput();
 
-    if (tInput.IsKeyDown(KEY_LEFT))
-    {
-        m_Camera.Move(-4, 0);
-    }
-    else if (tInput.IsKeyDown(KEY_RIGHT))
-    {
-        m_Camera.Move(4, 0);
-    }
+    //if (tInput.IsKeyDown(KEY_LEFT))
+    //{
+    //    m_Camera.Move(-4, 0);
+   // }
+   //else if (tInput.IsKeyDown(KEY_RIGHT))
+    //{
+    //    m_Camera.Move(4, 0);
+    //}
 }
 
 void DemoMap::Start()
 {
     m_Map.Register("Rect", new RectFactory());
 
-    if (!m_Map.Load("Assets/Demo/demo.tmx"))
+    if (!m_Map.Load("Assets/Demo/BalloonMenu.tmx"))
     {
         Engine::Instance().GetLogger().Log("Error loading map\n");
     }

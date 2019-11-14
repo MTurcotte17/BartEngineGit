@@ -17,7 +17,7 @@ void bart::Text::Draw()
     tGraphic.Draw(m_FontId, m_Text, m_X, m_Y);
 }
 
-void bart::Text::Update(Transform* aTransform, float aDelta)
+void bart::Text::Update(Transform* aTransform, float /*aDelta*/)
 {
     if (aTransform != nullptr)
     {
