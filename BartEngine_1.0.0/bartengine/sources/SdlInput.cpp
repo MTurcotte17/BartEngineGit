@@ -202,6 +202,21 @@ bool bart::SdlInput::IsKeyDown(const EKeys aKey)
     return false;
 }
 
+bool bart::SdlInput::IsKeyUp(const EKeys aKey)
+{
+	if (m_KeyStates != nullptr)
+	{
+		if (m_KeyStates[aKey] == 0)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+
 bool bart::SdlInput::IsMouseButtonDown(EMouseButton aButton)
 {
     return mMouseState[aButton];

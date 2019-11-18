@@ -18,6 +18,11 @@ bool bart::NullInput::IsKeyDown(EKeys /*aKey*/)
     return false;
 }
 
+bool bart::NullInput::IsKeyUp(EKeys aKey)
+{
+	return false;
+}
+
 bool bart::NullInput::IsMouseButtonDown(EMouseButton /*aButton*/)
 {
     return false;

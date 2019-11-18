@@ -15,6 +15,7 @@ namespace bart
 
         virtual void PoolEvents() = 0;
         virtual bool IsKeyDown(EKeys aKey) = 0;
+		virtual bool IsKeyUp(EKeys aKey) = 0;
         virtual bool IsMouseButtonDown(EMouseButton aButton) = 0;
         virtual int GetMouseX() const = 0;
         virtual int GetMouseY() const = 0;

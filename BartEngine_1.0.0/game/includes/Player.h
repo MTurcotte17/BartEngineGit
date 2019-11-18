@@ -23,7 +23,7 @@ public:
 	void Start() override;
 	void Destroy() override;
 
-	void SetVerticalVelocity(int aVelo);
+	void SetVelocity();
 
 	void SetRectangle(int aX, int aY, int aWidth, int aHeight, Color aColor, float aAngle);
 	Rectangle& GetDestination() { return m_Destination; }
@@ -37,11 +37,18 @@ private:
 	Color m_Color;
 	Sprite *m_PlayerSprite;
 	int m_VerticalVelocity;
-	const int m_MinVerticalVelocity = 2;
-	const int m_MaxVerticalVelocity = -5;
-	const int m_VelocityDecayRate = 4;
-	const int m_JumpStrength = -20;
-	int m_ReserveVelocity;
+	int m_Speed = 1;
+	int m_HorizontalVelocity;
+	const int m_MinHorizontalVelocity = 30;
+	const int m_MaxHorizontalVelocity = -30;
+	const int m_MinVerticalVelocity = 50;
+	const int m_MaxVerticalVelocity = -50;
+	const int m_VelocityDecayRate = 1;
+	const int m_JumpStrength = -15;
+	bool m_IsGrounded = false;
+	bool m_CanJump = true;
+
+	//int m_ReserveVelocity;
 
 };
 

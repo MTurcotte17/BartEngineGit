@@ -1,51 +1,31 @@
 ﻿  Animation.cpp
   Atlas.cpp
   Background.cpp
-  BaseCollision.cpp
   Camera.cpp
-  Circle.cpp
   CircleCollider.cpp
-  Color.cpp
   Engine.cpp
   Entity.cpp
   Layer.cpp
   Music.cpp
-  NullAudio.cpp
-  NullCollision.cpp
-  NullGraphic.cpp
   NullInput.cpp
-  NullLogger.cpp
-  NullScene.cpp
-  NullTimer.cpp
+x:\bartengine\bartengine_1.0.0\bartengine\sources\nullinput.cpp(21): warning C4100: 'aKey': unreferenced formal parameter
   ImageLayer.cpp
-  Generating Code...
-  Compiling...
-  ObjectFactory.cpp
-  ObjectLayer.cpp
-  Point.cpp
-  Rectangle.cpp
   RectCollider.cpp
   SceneManager.cpp
   SdlAudio.cpp
   SdlGraphics.cpp
-  FileLogger.cpp
   SdlInput.cpp
-  SdlTimer.cpp
   Sound.cpp
   Sprite.cpp
-  StdLogger.cpp
   Text.cpp
   TileLayer.cpp
-  TileMap.cpp
-  TileProperty.cpp
-  Tileset.cpp
-  Transform.cpp
   Generating Code...
   Compiling...
-  VsLogger.cpp
+  TileMap.cpp
+  Tileset.cpp
   World.cpp
   Generating Code...
-  bartengine.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\bartengine.lib
+  bartengine.vcxproj -> X:\BartEngine\BartEngine_1.0.0\Debug\bartengine.lib
   Copy SDL2.0 dll to the output folder
   ..\externals\lib\x86\libFLAC-8.dll
   ..\externals\lib\x86\libfreetype-6.dll

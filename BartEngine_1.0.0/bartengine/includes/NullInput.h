@@ -15,6 +15,7 @@ namespace bart
 
         void PoolEvents() override;
         bool IsKeyDown(EKeys aKey) override;
+		bool IsKeyUp(EKeys aKey) override;
         bool IsMouseButtonDown(EMouseButton aButton) override;
         int GetMouseX() const override;
         int GetMouseY() const override;
