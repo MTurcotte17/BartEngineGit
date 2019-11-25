@@ -5,11 +5,10 @@
   CircleCollider.cpp
   Engine.cpp
   Entity.cpp
+  ImageLayer.cpp
   Layer.cpp
   Music.cpp
-  NullInput.cpp
-x:\bartengine\bartengine_1.0.0\bartengine\sources\nullinput.cpp(21): warning C4100: 'aKey': unreferenced formal parameter
-  ImageLayer.cpp
+  NullScene.cpp
   RectCollider.cpp
   SceneManager.cpp
   SdlAudio.cpp
@@ -25,7 +24,7 @@ x:\bartengine\bartengine_1.0.0\bartengine\sources\nullinput.cpp(21): warning C41
   Tileset.cpp
   World.cpp
   Generating Code...
-  bartengine.vcxproj -> X:\BartEngine\BartEngine_1.0.0\Debug\bartengine.lib
+  bartengine.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\bartengine.lib
   Copy SDL2.0 dll to the output folder
   ..\externals\lib\x86\libFLAC-8.dll
   ..\externals\lib\x86\libfreetype-6.dll

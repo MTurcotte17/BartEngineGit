@@ -32,7 +32,7 @@ void Player::Update(float aDeltaTime)
 	TileMap* tMap = tEntity->GetMap();
 	TileLayer* tLayer = tMap->GetLayer<TileLayer>("Collision");
 
-	if (tInput.IsKeyDown(KEY_SPACE) && m_CanJump)
+	if (tInput.IsKeyDown(KEY_SPACE) && m_CanJump && m_Transform->Y > 0)
 	{
 		m_VerticalVelocity += m_JumpStrength;
 		m_CanJump = false;
@@ -88,7 +88,6 @@ void Player::Update(float aDeltaTime)
 				m_Destination.Y = m_OldY;
 				m_VerticalVelocity = 0;
 				m_IsGrounded = true;
-				std::cout << "grounded" << std::endl;
 			}
 		}
 
@@ -109,14 +108,15 @@ void Player::Update(float aDeltaTime)
 			m_Destination.X = m_OldX;
 		}
 	}
+	
+	isColliding();
 
-//	if (!m_IsGrounded)
-	//{
+	if (!m_IsGrounded)
+	{
 		m_VerticalVelocity += m_VelocityDecayRate;
-	//}
+	}
 	SetVelocity();
 
-	std::cout << m_HorizontalVelocity << std::endl;
 	m_Transform->Translate(m_HorizontalVelocity * 0.1, m_VerticalVelocity * 0.1);
 
 	if (m_Transform->X > 800)
@@ -142,6 +142,7 @@ void Player::Start()
 	m_Transform->SetWidth(static_cast<float>(m_Destination.W));
 	m_Transform->SetHeight(static_cast<float>(m_Destination.H));
 	m_Transform->SetRotation(m_Angle);
+	m_OiseauList = OiseauManager::Instance().GetOiseau();
 }
 
 void Player::Destroy()
@@ -178,6 +179,50 @@ void Player::SetRectangle(int aX, int aY, int aWidth, int aHeight, Color aColor,
 	m_Angle = aAngle;
 	m_OldX = m_Destination.X;
 	m_OldY = m_Destination.Y;
+}
+
+void Player::isColliding()
+{
+	for (int i = 0; i < m_OiseauList.size(); i++)
+	{
+		std::cout << m_Destination.X << ", " << m_Destination.Y << " Player" << std::endl;
+		Rectangle tTemp = m_OiseauList[i]->GetDestination();
+		std::cout << tTemp.X << ", " << tTemp.Y << " Ennemy" << std::endl;
+		if (m_Collision.IsColliding(m_Destination, m_OiseauList[i]->GetDestination()))
+		{
+			std::cout << "checking collision with ennemy" << std::endl;
+			if (!isTakingDamage(i))
+			{
+				if (!isDealingDamage(i))
+				{
+					m_HorizontalVelocity += m_HorizontalVelocity * -1;
+				}
+			}
+		}
+	}
+}
+
+bool Player::isTakingDamage(int aOiseauIndex)
+{
+
+	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
+	if (m_Destination.Y > tEnnemyDest.Y + tEnnemyDest.H * 0.75)
+	{
+		m_VerticalVelocity = m_VerticalVelocity * -1;
+		return true;
+	}
+	return false;
+}
+
+bool Player::isDealingDamage(int aOiseauIndex)
+{
+	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
+	if (m_Destination.Y < tEnnemyDest.Y + tEnnemyDest.H * 0.75)
+	{
+		m_VerticalVelocity = m_VerticalVelocity * -1;
+		return true;
+	}
+	return false;
 }
 
 void PlayerFactory::Create(const std::string& aName, const Rectangle& aDest, float aAngle, TiledProperties* aProps) const

@@ -24,5 +24,6 @@ public:
 	static const string BALLOON_TITLE;
 	static const string BALLOON_SELECT;
 	static const string PLAYER;
+	static const string ENNEMY;
 };
 #endif

@@ -1,7 +1,8 @@
 ﻿  Player.cpp
-x:\bartengine\bartengine_1.0.0\game\sources\player.cpp(81): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-x:\bartengine\bartengine_1.0.0\game\sources\player.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-x:\bartengine\bartengine_1.0.0\game\sources\player.cpp(87): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-x:\bartengine\bartengine_1.0.0\game\sources\player.cpp(108): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-x:\bartengine\bartengine_1.0.0\game\sources\player.cpp(120): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  game.vcxproj -> X:\BartEngine\BartEngine_1.0.0\Debug\game.exe
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(81): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(82): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(87): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(107): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(120): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(186): warning C4018: '<': signed/unsigned mismatch
+  game.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\game.exe

@@ -24,6 +24,7 @@
     <ClCompile Include="sources\Board.cpp" />
     <ClCompile Include="sources\BoardControl.cpp" />
     <ClCompile Include="sources\DemoMap.cpp" />
+    <ClCompile Include="sources\Ennemy.cpp" />
     <ClCompile Include="sources\Game.cpp" />
     <ClCompile Include="sources\GamePlay.cpp" />
     <ClCompile Include="sources\GameScreen.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="sources\MenuOption.cpp" />
     <ClCompile Include="sources\MenuScreen.cpp" />
     <ClCompile Include="sources\NextBlockBox.cpp" />
+    <ClCompile Include="sources\OiseauManager.cpp" />
     <ClCompile Include="sources\Player.cpp" />
     <ClCompile Include="sources\RectEntity.cpp" />
     <ClCompile Include="sources\ScoreBox.cpp" />
@@ -46,6 +48,7 @@
     <ClInclude Include="includes\Board.h" />
     <ClInclude Include="includes\BoardControl.h" />
     <ClInclude Include="includes\DemoMap.h" />
+    <ClInclude Include="includes\Ennemy.h" />
     <ClInclude Include="includes\GamePlay.h" />
     <ClInclude Include="includes\GameScreen.h" />
     <ClInclude Include="includes\LevelOne.h" />
@@ -55,6 +58,7 @@
     <ClInclude Include="includes\MenuOption.h" />
     <ClInclude Include="includes\MenuScreen.h" />
     <ClInclude Include="includes\NextBlockBox.h" />
+    <ClInclude Include="includes\OiseauManager.h" />
     <ClInclude Include="includes\Player.h" />
     <ClInclude Include="includes\RectEntity.h" />
     <ClInclude Include="includes\ScoreBox.h" />
@@ -71,7 +75,7 @@
     <ProjectGuid>{585205FF-61D4-4FB5-A8B9-511E7FB59857}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>game</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

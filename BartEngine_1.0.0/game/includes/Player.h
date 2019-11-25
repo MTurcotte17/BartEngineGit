@@ -6,6 +6,11 @@
 #include <ObjectFactory.h>
 #include <Transform.h>
 #include <Sprite.h>
+#include <BaseCollision.h>
+#include <Ennemy.h>
+#include <vector>
+#include <iostream>
+#include <OiseauManager.h>
 
 using namespace bart;
 
@@ -28,6 +33,15 @@ public:
 	void SetRectangle(int aX, int aY, int aWidth, int aHeight, Color aColor, float aAngle);
 	Rectangle& GetDestination() { return m_Destination; }
 
+	void isColliding();
+
+	bool isTakingDamage(int aOiseauIndex);
+	bool isDealingDamage(int aOiseauIndex);
+
+	
+
+
+
 private:
 	Rectangle m_Destination;
 	Transform* m_Transform;
@@ -47,6 +61,9 @@ private:
 	const int m_JumpStrength = -15;
 	bool m_IsGrounded = false;
 	bool m_CanJump = true;
+	BaseCollision m_Collision;
+
+	std::vector<Ennemy*> m_OiseauList;
 
 	//int m_ReserveVelocity;
 

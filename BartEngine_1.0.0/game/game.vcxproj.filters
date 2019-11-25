@@ -27,6 +27,12 @@
     <Filter Include="Source Files\Components">
       <UniqueIdentifier>{1d670aff-3f9e-43e1-bc1c-247e740402d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{2f3f4667-39e8-405a-b82b-ff639a781e73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{ffd764a8-6ef7-4d78-97d6-2602e58e2c60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\Game.cpp">
@@ -89,6 +95,12 @@
     <ClCompile Include="sources\LevelOneMap.cpp">
       <Filter>Source Files\Entities</Filter>
     </ClCompile>
+    <ClCompile Include="sources\Ennemy.cpp">
+      <Filter>Source Files\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\OiseauManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\GamePlay.h">
@@ -147,6 +159,12 @@
     </ClInclude>
     <ClInclude Include="includes\LevelOneMap.h">
       <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\Ennemy.h">
+      <Filter>Header Files\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\OiseauManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,8 @@
 #include <TileLayer.h>
 #include <iostream>
 #include <Player.h>
+#include <Ennemy.h>
+#include <OiseauManager.h>
 
 
 LevelOneMap::LevelOneMap()
@@ -21,7 +23,9 @@ void LevelOneMap::Update(float aDeltaTime)
 
 void LevelOneMap::Start()
 {
+
 	m_Map.Register("Player", new PlayerFactory());
+	m_Map.Register("Ennemy", new EnnemyFactory());
 
 	if (!m_Map.Load("Assets/Demo/BalloonMenu.tmx"))
 	{
@@ -31,6 +35,7 @@ void LevelOneMap::Start()
 	m_Camera.SetPosition(0, 0);
 	m_Camera.SetViewport(0, 0, 800, 600);
 	Engine::Instance().GetGraphic().SetCamera(&m_Camera);
+
 }
 
 void LevelOneMap::Destroy()
