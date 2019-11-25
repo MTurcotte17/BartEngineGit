@@ -24,8 +24,8 @@ void LevelOneMap::Update(float aDeltaTime)
 void LevelOneMap::Start()
 {
 
-	m_Map.Register("Player", new PlayerFactory());
 	m_Map.Register("Ennemy", new EnnemyFactory());
+	m_Map.Register("Player", new PlayerFactory());
 
 	if (!m_Map.Load("Assets/Demo/BalloonMenu.tmx"))
 	{

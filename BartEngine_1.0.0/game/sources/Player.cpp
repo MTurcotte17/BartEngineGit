@@ -143,6 +143,7 @@ void Player::Start()
 	m_Transform->SetHeight(static_cast<float>(m_Destination.H));
 	m_Transform->SetRotation(m_Angle);
 	m_OiseauList = OiseauManager::Instance().GetOiseau();
+	std::cout << m_OiseauList.size() << " size of ennemy list" << std::endl;
 }
 
 void Player::Destroy()
@@ -185,17 +186,21 @@ void Player::isColliding()
 {
 	for (int i = 0; i < m_OiseauList.size(); i++)
 	{
-		std::cout << m_Destination.X << ", " << m_Destination.Y << " Player" << std::endl;
-		Rectangle tTemp = m_OiseauList[i]->GetDestination();
-		std::cout << tTemp.X << ", " << tTemp.Y << " Ennemy" << std::endl;
-		if (m_Collision.IsColliding(m_Destination, m_OiseauList[i]->GetDestination()))
+		if (m_OiseauList[i]->IsActive())
 		{
-			std::cout << "checking collision with ennemy" << std::endl;
-			if (!isTakingDamage(i))
+			//std::cout << m_Destination.X << ", " << m_Destination.Y << " Player" << std::endl;
+			Rectangle tTemp = m_OiseauList[i]->GetDestination();
+			//std::cout << tTemp.X << ", " << tTemp.Y << " Ennemy" << std::endl;
+			if (m_Collision.IsColliding(m_Destination, m_OiseauList[i]->GetDestination()))
 			{
-				if (!isDealingDamage(i))
+				//std::cout << "checking collision with ennemy" << std::endl;
+				if (!isTakingDamage(i))
 				{
-					m_HorizontalVelocity += m_HorizontalVelocity * -1;
+					if (!isDealingDamage(i))
+					{
+						std::cout << "Not Dealing Shit" << std::endl;
+						m_HorizontalVelocity += (m_HorizontalVelocity * -1) * 2 ;
+					}
 				}
 			}
 		}
@@ -208,6 +213,7 @@ bool Player::isTakingDamage(int aOiseauIndex)
 	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
 	if (m_Destination.Y > tEnnemyDest.Y + tEnnemyDest.H * 0.75)
 	{
+		//std::cout << "Taking Damage" << std::endl;
 		m_VerticalVelocity = m_VerticalVelocity * -1;
 		return true;
 	}
@@ -217,9 +223,11 @@ bool Player::isTakingDamage(int aOiseauIndex)
 bool Player::isDealingDamage(int aOiseauIndex)
 {
 	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
-	if (m_Destination.Y < tEnnemyDest.Y + tEnnemyDest.H * 0.75)
+	if (m_Destination.Y < tEnnemyDest.Y - tEnnemyDest.H * 0.75)
 	{
+		m_OiseauList[aOiseauIndex]->TakeDamage();
 		m_VerticalVelocity = m_VerticalVelocity * -1;
+		//std::cout << "Dealing damage" << std::endl;
 		return true;
 	}
 	return false;

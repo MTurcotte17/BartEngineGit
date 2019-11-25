@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="2019.10.30" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.2" tiledversion="2019.10.30" orientation="orthogonal" renderorder="right-down" compressionlevel="0" width="25" height="19" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="10">
  <tileset firstgid="1" source="FinalSet.tsx"/>
  <tileset firstgid="46" source="../../../../../BartEngine_1.0.0/game/Assets/Demo/FinalSet.tsx"/>
  <imagelayer id="2" name="Stars">
@@ -55,16 +55,40 @@
 </data>
  </layer>
  <objectgroup color="#ff0000" id="4" name="Entity">
-  <object id="1" name="PlayerSpawn" type="Player" x="70" y="440" width="36" height="55">
-   <properties>
-    <property name="StartX" type="int" value="70"/>
-    <property name="StartY" type="int" value="440"/>
-   </properties>
-  </object>
-  <object id="2" name="EnnemySpawn" type="Ennemy" x="391" y="356" width="36" height="55">
+  <object id="2" name="EnnemySpawn1" type="Ennemy" x="395.341" y="357.736" width="36" height="55">
    <properties>
     <property name="StartX" type="int" value="391"/>
     <property name="StartY" type="int" value="356"/>
+   </properties>
+  </object>
+  <object id="5" name="EnnemySpawn2" type="Ennemy" x="576.683" y="451.719" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="391"/>
+    <property name="StartY" type="int" value="356"/>
+   </properties>
+  </object>
+  <object id="6" name="EnnemySpawn3" type="Ennemy" x="219.873" y="197.351" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="391"/>
+    <property name="StartY" type="int" value="356"/>
+   </properties>
+  </object>
+  <object id="7" name="EnnemySpawn4" type="Ennemy" x="475.977" y="101.854" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="391"/>
+    <property name="StartY" type="int" value="356"/>
+   </properties>
+  </object>
+  <object id="8" name="EnnemySpawn5" type="Ennemy" x="669.575" y="450.851" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="391"/>
+    <property name="StartY" type="int" value="356"/>
+   </properties>
+  </object>
+  <object id="9" name="PlayerSpawn" type="Player" x="90.5187" y="454.323" width="36" height="55">
+   <properties>
+    <property name="StartX" type="int" value="70"/>
+    <property name="StartY" type="int" value="440"/>
    </properties>
   </object>
  </objectgroup>

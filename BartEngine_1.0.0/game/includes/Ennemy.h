@@ -23,6 +23,10 @@ public:
 	void Start() override;
 	void Destroy() override;
 
+	void TakeDamage();
+
+
+
 	void SetVelocity();
 
 	void GroundedUpdate(float aDeltaTime);

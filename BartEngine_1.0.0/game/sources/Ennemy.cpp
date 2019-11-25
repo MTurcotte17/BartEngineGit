@@ -14,7 +14,10 @@ Ennemy::Ennemy()
 
 void Ennemy::Draw()
 {
-	m_EnnemySprite->Draw();
+	if (m_EnnemySprite != nullptr)
+	{
+		m_EnnemySprite->Draw();
+	}
 }
 
 void Ennemy::Update(float aDeltaTime)
@@ -119,13 +122,28 @@ void Ennemy::Start()
 	m_Transform->SetHeight(static_cast<float>(m_Destination.H));
 	m_Transform->SetRotation(m_Angle);
 	OiseauManager::Instance().AddOiseau(this);
+	std::cout << "ADD OISEAU TO LIST" << std::endl;
 	
 }
 
 void Ennemy::Destroy()
 {
+	OiseauManager::Instance().RemoveOiseau();
 	m_EnnemySprite->Unload();
 	SAFE_DELETE(m_EnnemySprite);
+}
+
+void Ennemy::TakeDamage()
+{
+	if (m_CurrentState == Flapping || m_CurrentState == Falling)
+	{
+		m_CurrentState = Parachuting;
+		std::cout << "Parachuting" << std::endl;
+	}
+	else
+	{
+		SetActive(false);
+	}
 }
 
 void Ennemy::GroundedUpdate(float aDeltaTime)
@@ -163,7 +181,7 @@ void Ennemy::FlappingUpdate(float aDeltaTime)
 		{
 			m_Speed += m_Speed * -1;
 			m_SecondsToRotateTimer = 0;
-			std::cout << "TURNING" << std::endl;
+			
 		}
 		else
 		{
@@ -209,6 +227,7 @@ void Ennemy::FallingUpdate(float aDeltaTime)
 
 void Ennemy::ParachutingUpdate(float aDeltaTime)
 {
+	//std::cout << "PARACHUTATION" << std::endl;
 	if (m_FramesToTick < m_FrameCount)
 	{
 		m_Speed += m_Speed * -1;

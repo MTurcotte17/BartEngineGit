@@ -16,6 +16,8 @@ public:
 
 	void AddOiseau(Ennemy* aOiseau) { m_OiseauList.push_back(aOiseau); }
 	std::vector<Ennemy*> GetOiseau() { return m_OiseauList; }
+	void RemoveOiseau() { m_OiseauList.pop_back();}
+	
 
 private:
 	std::vector<Ennemy*> m_OiseauList;

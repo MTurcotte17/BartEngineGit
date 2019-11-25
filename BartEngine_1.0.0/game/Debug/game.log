@@ -4,5 +4,5 @@ d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(82): warning C4244: '=
 d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(87): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(107): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
 d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(120): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(186): warning C4018: '<': signed/unsigned mismatch
+d:\bartenginegit\bartengine_1.0.0\game\sources\player.cpp(187): warning C4018: '<': signed/unsigned mismatch
   game.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\game.exe
