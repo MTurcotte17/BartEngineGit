@@ -9,15 +9,12 @@
 Ennemy::Ennemy()
 {
 	m_Transform = new Transform;
-	m_EnnemySprite = new Sprite;
+	m_Animator = new Animation;
 }
 
 void Ennemy::Draw()
 {
-	if (m_EnnemySprite != nullptr)
-	{
-		m_EnnemySprite->Draw();
-	}
+	m_Animator->Draw();
 }
 
 void Ennemy::Update(float aDeltaTime)
@@ -109,28 +106,28 @@ void Ennemy::Update(float aDeltaTime)
 		m_Transform->X = 800;
 	}
 
-	m_EnnemySprite->Update(m_Transform, aDeltaTime);
+	m_Animator->Update(m_Transform, aDeltaTime);
 	m_OldX = m_Destination.X;
 	m_OldY = m_Destination.Y;
 }
 
 void Ennemy::Start()
 {
-	m_EnnemySprite->Load(Assets::ENNEMY);
+	m_Animator->InitAnimation(12, 16, 24);
+	m_Animator->Load(Assets::ENNEMY);
 	m_Transform->SetPosition(static_cast<float>(m_Destination.X), static_cast<float>(m_Destination.Y));
 	m_Transform->SetWidth(static_cast<float>(m_Destination.W));
 	m_Transform->SetHeight(static_cast<float>(m_Destination.H));
 	m_Transform->SetRotation(m_Angle);
 	OiseauManager::Instance().AddOiseau(this);
-	std::cout << "ADD OISEAU TO LIST" << std::endl;
 	
 }
 
 void Ennemy::Destroy()
 {
 	OiseauManager::Instance().RemoveOiseau();
-	m_EnnemySprite->Unload();
-	SAFE_DELETE(m_EnnemySprite);
+	m_Animator->Unload();
+	SAFE_DELETE(m_Animator);
 }
 
 void Ennemy::TakeDamage()
@@ -148,6 +145,7 @@ void Ennemy::TakeDamage()
 
 void Ennemy::GroundedUpdate(float aDeltaTime)
 {
+	m_Animator->Play(5, 6, 0.5, false);
 	if (m_FramesToTick < m_FrameCount)
 	{
 		//need to add animation of balloon pumping
@@ -171,6 +169,7 @@ void Ennemy::FlappingUpdate(float aDeltaTime)
 	{
 		m_VerticalVelocity += m_JumpStrength;
 		m_FrameCount = 0;
+		m_Animator->Play(0, 3, 0.3, true);
 
 		if (m_Transform->Y < 70)
 		{
@@ -228,10 +227,11 @@ void Ennemy::FallingUpdate(float aDeltaTime)
 void Ennemy::ParachutingUpdate(float aDeltaTime)
 {
 	//std::cout << "PARACHUTATION" << std::endl;
+	m_Animator->Play(3, 1, 0.3, true);
 	if (m_FramesToTick < m_FrameCount)
 	{
 		m_Speed += m_Speed * -1;
-
+		m_VerticalVelocity = -2;
 		m_FrameCount = 0;
 	}
 	else

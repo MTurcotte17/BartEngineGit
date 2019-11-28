@@ -6,6 +6,7 @@
 #include <ObjectFactory.h>
 #include <Transform.h>
 #include <Sprite.h>
+#include <Animation.h>
 
 using namespace bart;
 
@@ -43,7 +44,7 @@ public:
 private:
 	Rectangle m_Destination;
 	Transform* m_Transform;
-	Sprite* m_EnnemySprite;
+	Animation* m_Animator;
 	Color m_Color;
 	int m_OldX;
 	int m_OldY;

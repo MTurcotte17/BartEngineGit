@@ -16,6 +16,7 @@ namespace bart
         void Draw() override;
         void Update(Transform* aTransform, float aDelta) override;
         void Play(int aStart, int aCount, float aDelay, bool aLoop);
+		bool IsPlaying() { return m_Playing; }
         void Stop();
 
     private:

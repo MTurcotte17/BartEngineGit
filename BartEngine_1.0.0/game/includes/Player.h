@@ -11,6 +11,7 @@
 #include <vector>
 #include <iostream>
 #include <OiseauManager.h>
+#include <Animation.h>
 
 using namespace bart;
 
@@ -45,11 +46,13 @@ public:
 private:
 	Rectangle m_Destination;
 	Transform* m_Transform;
+	Animation* m_Animator;
+
 	int m_OldX;
 	int m_OldY;
 	float m_Angle;
 	Color m_Color;
-	Sprite *m_PlayerSprite;
+	//Sprite *m_PlayerSprite;
 	int m_VerticalVelocity;
 	int m_Speed = 1;
 	int m_HorizontalVelocity;
@@ -62,6 +65,7 @@ private:
 	bool m_IsGrounded = false;
 	bool m_CanJump = true;
 	BaseCollision m_Collision;
+	int m_Lives = 2;
 
 	std::vector<Ennemy*> m_OiseauList;
 

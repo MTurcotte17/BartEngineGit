@@ -6,7 +6,7 @@
 #include <Transform.h>
 #include <Sprite.h>
 #include <Assets.h>
-#include <iostream>
+#include <iostream>>
 
 
 
@@ -14,12 +14,13 @@
 Player::Player()
 {
 	m_Transform = new Transform;
-	m_PlayerSprite = new Sprite;
+	//m_PlayerSprite = new Sprite;
+	m_Animator = new Animation;
 }
 
 void Player::Draw()
 {
-	m_PlayerSprite->Draw();
+	m_Animator->Draw();
 	//Engine::Instance().GetGraphic().SetColor(m_Color.R, m_Color.G, m_Color.B, m_Color.A);
 	//Engine::Instance().GetGraphic().Fill(m_Destination);
 }
@@ -34,6 +35,15 @@ void Player::Update(float aDeltaTime)
 
 	if (tInput.IsKeyDown(KEY_SPACE) && m_CanJump && m_Transform->Y > 0)
 	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(7, 3, 0.1, false);
+		}
+		else
+		{
+			m_Animator->Play(17, 3, 0.1, false);
+		}
+
 		m_VerticalVelocity += m_JumpStrength;
 		m_CanJump = false;
 		m_IsGrounded = false;
@@ -46,11 +56,13 @@ void Player::Update(float aDeltaTime)
 	if (tInput.IsKeyDown(KEY_A))
 	{
 		m_HorizontalVelocity -= m_Speed;
+		m_Transform->HorizontalFlipped = true;
 	}
 
 	if (tInput.IsKeyDown(KEY_D))
 	{
 		m_HorizontalVelocity += m_Speed;
+		m_Transform->HorizontalFlipped = false;
 	}
 
 	if (!tInput.IsKeyDown(KEY_D) && !tInput.IsKeyDown(KEY_A))
@@ -88,6 +100,7 @@ void Player::Update(float aDeltaTime)
 				m_Destination.Y = m_OldY;
 				m_VerticalVelocity = 0;
 				m_IsGrounded = true;
+
 			}
 		}
 
@@ -113,6 +126,18 @@ void Player::Update(float aDeltaTime)
 
 	if (!m_IsGrounded)
 	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(7, 1, 0.2, true);
+		}
+		else if (m_Lives == 1) 
+		{
+			m_Animator->Play(17, 1, 0.2, true);
+		}
+	}
+
+	if (!m_IsGrounded)
+	{
 		m_VerticalVelocity += m_VelocityDecayRate;
 	}
 	SetVelocity();
@@ -127,8 +152,31 @@ void Player::Update(float aDeltaTime)
 	{
 		m_Transform->X = 800;
 	}
+
+	if (m_IsGrounded && m_HorizontalVelocity == 0)
+	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(0, 3, 0.2, true);
+		}
+		else
+		{
+			m_Animator->Play(10, 3, 0.2, true);
+		}
+	}
+	else if (m_IsGrounded && m_HorizontalVelocity != 0)
+	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(3, 3, 0.2, true);
+		}
+		else if (m_Lives == 1)
+		{
+			m_Animator->Play(13, 3, 0.2, true);
+		}
+	}
 	
-	m_PlayerSprite->Update(m_Transform, aDeltaTime);
+	m_Animator->Update(m_Transform, aDeltaTime);
 	m_OldX = m_Destination.X;
 	m_OldY = m_Destination.Y;
 }
@@ -137,7 +185,8 @@ void Player::Update(float aDeltaTime)
 
 void Player::Start()
 {
-	m_PlayerSprite->Load(Assets::PLAYER);
+	m_Animator->InitAnimation(10, 16, 24);
+	m_Animator->Load(Assets::PLAYER);
 	m_Transform->SetPosition(static_cast<float>(m_Destination.X), static_cast<float>(m_Destination.Y));
 	m_Transform->SetWidth(static_cast<float>(m_Destination.W));
 	m_Transform->SetHeight(static_cast<float>(m_Destination.H));
@@ -148,7 +197,7 @@ void Player::Start()
 
 void Player::Destroy()
 {
-	m_PlayerSprite->Unload();
+	m_Animator->Unload();
 	SAFE_DELETE(m_Transform);
 }
 
@@ -213,7 +262,11 @@ bool Player::isTakingDamage(int aOiseauIndex)
 	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
 	if (m_Destination.Y > tEnnemyDest.Y + tEnnemyDest.H * 0.75)
 	{
-		//std::cout << "Taking Damage" << std::endl;
+		m_Lives--;
+		if (m_Lives == 0)
+		{
+			bart::Engine::Instance().GetScene().Load("MainMenu");
+		}
 		m_VerticalVelocity = m_VerticalVelocity * -1;
 		return true;
 	}

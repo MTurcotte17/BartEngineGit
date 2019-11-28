@@ -1,29 +1,4 @@
 ﻿  Animation.cpp
-  Atlas.cpp
-  Background.cpp
-  Camera.cpp
-  CircleCollider.cpp
-  Engine.cpp
-  Entity.cpp
-  ImageLayer.cpp
-  Layer.cpp
-  Music.cpp
-  NullScene.cpp
-  RectCollider.cpp
-  SceneManager.cpp
-  SdlAudio.cpp
-  SdlGraphics.cpp
-  SdlInput.cpp
-  Sound.cpp
-  Sprite.cpp
-  Text.cpp
-  TileLayer.cpp
-  Generating Code...
-  Compiling...
-  TileMap.cpp
-  Tileset.cpp
-  World.cpp
-  Generating Code...
   bartengine.vcxproj -> D:\BartEngineGit\BartEngine_1.0.0\Debug\bartengine.lib
   Copy SDL2.0 dll to the output folder
   ..\externals\lib\x86\libFLAC-8.dll

@@ -47,15 +47,42 @@ void bart::Animation::Draw()
 
 void bart::Animation::Play(const int aStart, const int aCount, const float aDelay, const bool aLoop)
 {
-    m_CurrentFrame = aStart;
-    m_FirstFrame = aStart;
-    m_LastFrame = aStart + aCount - 1;
-    m_Delay = aDelay;
-    m_Loop = aLoop;
+	if (aStart != m_FirstFrame || !m_Playing || m_FirstFrame == m_LastFrame)
+	{
+		m_CurrentFrame = aStart;
+		m_FirstFrame = aStart;
+		m_LastFrame = aStart + aCount - 1;
+		m_Delay = aDelay;
+		m_Loop = aLoop;
 
-    UpdateFrame();
+		UpdateFrame();
 
-    m_Playing = true;
+		m_Playing = true;
+	}
+	else if (m_CurrentFrame == m_LastFrame && aCount == 1)
+	{
+		m_CurrentFrame = aStart;
+		m_FirstFrame = aStart;
+		m_LastFrame = aStart + aCount - 1;
+		m_Delay = aDelay;
+		m_Loop = aLoop;
+
+		UpdateFrame();
+
+		m_Playing = true;
+	}
+	else if (m_FirstFrame == m_LastFrame)
+	{
+		m_CurrentFrame = aStart;
+		m_FirstFrame = aStart;
+		m_LastFrame = aStart + aCount - 1;
+		m_Delay = aDelay;
+		m_Loop = aLoop;
+
+		UpdateFrame();
+
+		m_Playing = true;
+	}
 }
 
 void bart::Animation::Stop()
@@ -68,6 +95,8 @@ void bart::Animation::Stop()
     m_Delay = 0.0f;
     m_Loop = false;
 }
+
+
 
 void bart::Animation::UpdateFrame()
 {
