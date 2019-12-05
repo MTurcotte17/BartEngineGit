@@ -7,6 +7,7 @@
 #include <Sprite.h>
 #include <Assets.h>
 #include <iostream>>
+#include <LevelTwoMap.h>
 
 
 
@@ -20,7 +21,25 @@ Player::Player()
 
 void Player::Draw()
 {
-	m_Animator->Draw();
+	if (!m_isDead)
+	{
+		if (m_isInvincible)
+		{
+			if (m_isDrawnDamaged)
+			{
+				m_isDrawnDamaged = false;
+			}
+			else if (!m_isDrawnDamaged)
+			{
+				m_Animator->Draw();
+				m_isDrawnDamaged = true;
+			}
+		}
+		else
+		{
+			m_Animator->Draw();
+		}
+	}
 	//Engine::Instance().GetGraphic().SetColor(m_Color.R, m_Color.G, m_Color.B, m_Color.A);
 	//Engine::Instance().GetGraphic().Fill(m_Destination);
 }
@@ -30,8 +49,18 @@ void Player::Update(float aDeltaTime)
 	IInput& tInput = Engine::Instance().GetInput();
 
 	LevelOneMap* tEntity = static_cast<LevelOneMap*>(Engine::Instance().GetScene().FindEntity("LevelOne"));
-	TileMap* tMap = tEntity->GetMap();
+	LevelTwoMap* tEntity2 = static_cast<LevelTwoMap*>(Engine::Instance().GetScene().FindEntity("LevelTwo"));
+	TileMap* tMap;
+	if (tEntity != nullptr)
+	{
+		tMap = tEntity->GetMap();
+	}
+	else
+	{
+		tMap = tEntity2->GetMap();
+	}
 	TileLayer* tLayer = tMap->GetLayer<TileLayer>("Collision");
+	TileLayer* tDmgLayer = tMap->GetLayer<TileLayer>("Damage");
 
 	if (tInput.IsKeyDown(KEY_SPACE) && m_CanJump && m_Transform->Y > 0)
 	{
@@ -77,10 +106,120 @@ void Player::Update(float aDeltaTime)
 		}
 	}
 
+	if (m_isInvincible)
+	{
+		if (m_InvincibleTimer > m_InvincibleDelay)
+		{
+			m_isInvincible = false;
+			m_InvincibleTimer = 0;
+		}
+		else
+		{
+			m_InvincibleTimer++;
+		}
+	}
+	if (m_isDead)
+	{
+		if (m_ReturnToMenuTimer > m_ReturnToMenuDelay)
+		{
+			OiseauManager::Instance().ClearList();
+			bart::Engine::Instance().GetScene().Load("MainMenu");
+
+		}
+		else
+		{
+			m_ReturnToMenuTimer++;
+		}
+	}
+
+	if (m_isVictory)
+	{
+		if (m_NextLevelTimer > m_NextLevelDelay)
+		{
+			m_isVictory = false;
+			m_NextLevelTimer = 0;
+			OiseauManager::Instance().ChangeLevel();
+		}
+		else
+		{
+			m_NextLevelTimer++;
+		}
+	}
+	
 
 
 
 
+
+
+	if (tDmgLayer != nullptr)
+	{
+
+		m_Destination.Y = static_cast<int>(m_Transform->Y);
+		if (tDmgLayer->IsColliding(m_Destination) != 0)
+		{
+			m_isDead = true;
+		}
+
+		m_Destination.X = static_cast<int>(m_Transform->X);
+		if (tLayer->IsColliding(m_Destination) != 0)
+		{
+			m_isDead = true;
+		}
+	}
+	
+	isColliding();
+
+	if (!m_IsGrounded)
+	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(7, 1, 0.2, true);
+		}
+		else if (m_Lives == 1) 
+		{
+			m_Animator->Play(17, 1, 0.2, true);
+		}
+	}
+
+	m_VerticalVelocity += m_VelocityDecayRate;
+
+	SetVelocity();
+
+	m_Transform->Translate(m_HorizontalVelocity * 0.1, m_VerticalVelocity * 0.1);
+
+	if (m_Transform->X > 800)
+	{
+		m_Transform->X = 0;
+	}
+	else if (m_Transform->X < 0)
+	{
+		m_Transform->X = 800;
+	}
+
+	if (m_IsGrounded && m_HorizontalVelocity == 0)
+	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(0, 3, 0.2, true);
+		}
+		else
+		{
+			m_Animator->Play(10, 3, 0.2, true);
+		}
+	}
+	else if (m_IsGrounded && m_HorizontalVelocity != 0)
+	{
+		if (m_Lives == 2)
+		{
+			m_Animator->Play(3, 3, 0.2, true);
+		}
+		else if (m_Lives == 1)
+		{
+			m_Animator->Play(13, 3, 0.2, true);
+		}
+	}
+	
 	m_Destination.Y = static_cast<int>(m_Transform->Y);
 	if (tLayer != nullptr)
 	{
@@ -121,61 +260,7 @@ void Player::Update(float aDeltaTime)
 			m_Destination.X = m_OldX;
 		}
 	}
-	
-	isColliding();
 
-	if (!m_IsGrounded)
-	{
-		if (m_Lives == 2)
-		{
-			m_Animator->Play(7, 1, 0.2, true);
-		}
-		else if (m_Lives == 1) 
-		{
-			m_Animator->Play(17, 1, 0.2, true);
-		}
-	}
-
-	if (!m_IsGrounded)
-	{
-		m_VerticalVelocity += m_VelocityDecayRate;
-	}
-	SetVelocity();
-
-	m_Transform->Translate(m_HorizontalVelocity * 0.1, m_VerticalVelocity * 0.1);
-
-	if (m_Transform->X > 800)
-	{
-		m_Transform->X = 0;
-	}
-	else if (m_Transform->X < 0)
-	{
-		m_Transform->X = 800;
-	}
-
-	if (m_IsGrounded && m_HorizontalVelocity == 0)
-	{
-		if (m_Lives == 2)
-		{
-			m_Animator->Play(0, 3, 0.2, true);
-		}
-		else
-		{
-			m_Animator->Play(10, 3, 0.2, true);
-		}
-	}
-	else if (m_IsGrounded && m_HorizontalVelocity != 0)
-	{
-		if (m_Lives == 2)
-		{
-			m_Animator->Play(3, 3, 0.2, true);
-		}
-		else if (m_Lives == 1)
-		{
-			m_Animator->Play(13, 3, 0.2, true);
-		}
-	}
-	
 	m_Animator->Update(m_Transform, aDeltaTime);
 	m_OldX = m_Destination.X;
 	m_OldY = m_Destination.Y;
@@ -262,12 +347,20 @@ bool Player::isTakingDamage(int aOiseauIndex)
 	Rectangle tEnnemyDest = m_OiseauList[aOiseauIndex]->GetDestination();
 	if (m_Destination.Y > tEnnemyDest.Y + tEnnemyDest.H * 0.75)
 	{
-		m_Lives--;
-		if (m_Lives == 0)
+		if (!m_isInvincible)
 		{
-			bart::Engine::Instance().GetScene().Load("MainMenu");
+			m_Lives--;
+			if (m_Lives == 0)
+			{
+				
+				m_isDead = true;
+			}
+			else
+			{
+				m_isInvincible = true;
+			}
+			m_VerticalVelocity = m_VerticalVelocity * -1;
 		}
-		m_VerticalVelocity = m_VerticalVelocity * -1;
 		return true;
 	}
 	return false;
@@ -280,7 +373,7 @@ bool Player::isDealingDamage(int aOiseauIndex)
 	{
 		m_OiseauList[aOiseauIndex]->TakeDamage();
 		m_VerticalVelocity = m_VerticalVelocity * -1;
-		//std::cout << "Dealing damage" << std::endl;
+		m_isVictory = OiseauManager::Instance().GetVictory();
 		return true;
 	}
 	return false;

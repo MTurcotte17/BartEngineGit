@@ -30,6 +30,8 @@
     <ClCompile Include="sources\GameScreen.cpp" />
     <ClCompile Include="sources\LevelOne.cpp" />
     <ClCompile Include="sources\LevelOneMap.cpp" />
+    <ClCompile Include="sources\LevelTwo.cpp" />
+    <ClCompile Include="sources\LevelTwoMap.cpp" />
     <ClCompile Include="sources\LineBox.cpp" />
     <ClCompile Include="sources\MainMenu.cpp" />
     <ClCompile Include="sources\MenuOption.cpp" />
@@ -53,6 +55,8 @@
     <ClInclude Include="includes\GameScreen.h" />
     <ClInclude Include="includes\LevelOne.h" />
     <ClInclude Include="includes\LevelOneMap.h" />
+    <ClInclude Include="includes\LevelTwo.h" />
+    <ClInclude Include="includes\LevelTwoMap.h" />
     <ClInclude Include="includes\LineBox.h" />
     <ClInclude Include="includes\MainMenu.h" />
     <ClInclude Include="includes\MenuOption.h" />

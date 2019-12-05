@@ -64,6 +64,16 @@ private:
 	const int m_JumpStrength = -15;
 	bool m_IsGrounded = false;
 	bool m_CanJump = true;
+	bool m_isInvincible = false;
+	int m_InvincibleTimer = 0;
+	int m_InvincibleDelay = 120;
+	bool m_isDrawnDamaged = true;
+	bool m_isDead = false;
+	int m_ReturnToMenuTimer = 0;
+	int m_ReturnToMenuDelay = 120;
+	bool m_isVictory = false;
+	int m_NextLevelTimer = 0;
+	int m_NextLevelDelay = 120;
 	BaseCollision m_Collision;
 	int m_Lives = 2;
 

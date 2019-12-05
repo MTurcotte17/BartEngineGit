@@ -5,6 +5,7 @@
 #include <iostream>
 #include <LevelOneMap.h>
 #include <OiseauManager.h>
+#include <LevelTwoMap.h>
 
 Ennemy::Ennemy()
 {
@@ -14,14 +15,40 @@ Ennemy::Ennemy()
 
 void Ennemy::Draw()
 {
-	m_Animator->Draw();
+	if (m_isImmune)
+	{
+		if (m_isFlickering)
+		{
+			m_isFlickering = false;
+		}
+		else
+		{
+			m_isFlickering = true;
+			m_Animator->Draw();
+		}
+	}
+	else
+	{
+		m_Animator->Draw();
+	}
 }
 
 void Ennemy::Update(float aDeltaTime)
 {
+
 	LevelOneMap* tEntity = static_cast<LevelOneMap*>(Engine::Instance().GetScene().FindEntity("LevelOne"));
-	TileMap* tMap = tEntity->GetMap();
+	LevelTwoMap* tEntity2 = static_cast<LevelTwoMap*>(Engine::Instance().GetScene().FindEntity("LevelTwo"));
+	TileMap* tMap;
+	if (tEntity != nullptr)
+	{
+		tMap = tEntity->GetMap();
+	}
+	else
+	{
+		tMap = tEntity2->GetMap();
+	}
 	TileLayer* tLayer = tMap->GetLayer<TileLayer>("Collision");
+	TileLayer* tDmgLayer = tMap->GetLayer<TileLayer>("Damage");
 
 	switch(m_CurrentState)
 	{
@@ -45,12 +72,30 @@ void Ennemy::Update(float aDeltaTime)
 			ParachutingUpdate(aDeltaTime);
 			break;
 		}
+		case Idle:
+		{
+			IdleUpdate(aDeltaTime);
+			break;
+		}
 	}
 
-	if (m_CurrentState != Grounded)
+	if (m_CurrentState == Parachuting || m_CurrentState == Falling || m_CurrentState == Flapping)
 	{
 		m_HorizontalVelocity += m_Speed;
 		m_VerticalVelocity += m_VelocityDecayRate;
+	}
+
+	if (m_isImmune)
+	{
+		if (m_ImmuneTimer > m_ImmuneDelay)
+		{
+			m_isImmune = false;
+			m_ImmuneTimer = 0;
+		}
+		else
+		{
+			m_ImmuneTimer++;
+		}
 	}
 
 	
@@ -77,7 +122,7 @@ void Ennemy::Update(float aDeltaTime)
 				m_VerticalVelocity = 0;
 				if (m_CurrentState == Parachuting)
 				{
-					m_CurrentState = Flapping;
+					m_CurrentState = Idle;
 				}
 			}
 		}
@@ -90,6 +135,24 @@ void Ennemy::Update(float aDeltaTime)
 
 			m_Transform->X = m_OldX;
 			m_Destination.X = m_OldX;
+		}
+	}
+
+	if (tDmgLayer != nullptr)
+	{
+
+		m_Destination.Y = static_cast<int>(m_Transform->Y);
+		if (tDmgLayer->IsColliding(m_Destination) != 0)
+		{
+			OiseauManager::Instance().RemoveOiseau();
+			SetActive(false);
+		}
+
+		m_Destination.X = static_cast<int>(m_Transform->X);
+		if (tLayer->IsColliding(m_Destination) != 0)
+		{
+			OiseauManager::Instance().RemoveOiseau();
+			SetActive(false);
 		}
 	}
 
@@ -125,7 +188,7 @@ void Ennemy::Start()
 
 void Ennemy::Destroy()
 {
-	OiseauManager::Instance().RemoveOiseau();
+	OiseauManager::Instance().ClearList();
 	m_Animator->Unload();
 	SAFE_DELETE(m_Animator);
 }
@@ -135,11 +198,16 @@ void Ennemy::TakeDamage()
 	if (m_CurrentState == Flapping || m_CurrentState == Falling)
 	{
 		m_CurrentState = Parachuting;
+		m_isImmune = true;
 		std::cout << "Parachuting" << std::endl;
 	}
 	else
 	{
-		SetActive(false);
+		if (!m_isImmune)
+		{
+			OiseauManager::Instance().RemoveOiseau();
+			SetActive(false);
+		}
 	}
 }
 
@@ -239,6 +307,13 @@ void Ennemy::ParachutingUpdate(float aDeltaTime)
 		m_FrameCount++;
 	}
 
+}
+
+void Ennemy::IdleUpdate(float aDeltaTime)
+{
+	m_Animator->Play(11, 1, 1, true);
+	m_VerticalVelocity = 0;
+	m_HorizontalVelocity = 0;
 }
 
 void Ennemy::SetVelocity()

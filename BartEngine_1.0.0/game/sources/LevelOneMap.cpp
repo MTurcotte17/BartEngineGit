@@ -27,7 +27,7 @@ void LevelOneMap::Start()
 	m_Map.Register("Ennemy", new EnnemyFactory());
 	m_Map.Register("Player", new PlayerFactory());
 
-	if (!m_Map.Load("Assets/Demo/BalloonMenu.tmx"))
+	if (!m_Map.Load("Assets/Demo/Level1.tmx"))
 	{
 		Engine::Instance().GetLogger().Log("Error loading map\n");
 	}

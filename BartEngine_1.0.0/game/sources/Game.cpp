@@ -3,6 +3,7 @@
 #include <GamePlay.h>
 #include <TestMaps.h>
 #include <LevelOne.h>
+#include <LevelTwo.h>
 
 using namespace bart;
 
@@ -17,6 +18,7 @@ void RegisterGameStates()
     Engine::Instance().GetScene().Register("GamePlay", new GamePlay());
     Engine::Instance().GetScene().Register("TestMap", new TestMap());
 	Engine::Instance().GetScene().Register("LevelOne", new LevelOne());
+	Engine::Instance().GetScene().Register("LevelTwo", new LevelTwo());
 
 }
 

@@ -34,6 +34,7 @@ public:
 	void FlappingUpdate(float aDeltaTime);
 	void FallingUpdate(float aDeltaTime);
 	void ParachutingUpdate(float aDeltaTime);
+	void IdleUpdate(float aDeltaTime);
 
 	Rectangle GetDestination() { return m_Destination; }
 
@@ -59,6 +60,12 @@ private:
 	const int m_MaxHorizontalVelocity = -30;
 	const int m_MinVerticalVelocity = 20;
 	const int m_MaxVerticalVelocity = -50;
+
+	bool m_isImmune = false;
+	int m_ImmuneTimer = 0;
+	int m_ImmuneDelay = 30;
+
+	bool m_isFlickering = false;
 
 	//counts seconds with game frames.
 	int m_FramesToTick = 60;
@@ -87,7 +94,8 @@ private:
 		Grounded,
 		Flapping,
 		Falling,
-		Parachuting
+		Parachuting,
+		Idle
 	};
 	State m_CurrentState = Grounded;
 
